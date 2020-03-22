@@ -34,11 +34,13 @@ namespace Matsusanity.Data
                     .HasData(
                     new IdentityUser { Id = USER_ID, UserName = "Matsusanity@gmail.com", NormalizedUserName = "MATSUSANITY@GMAIL.COM", Email = "Matsusanity@gmail.com", NormalizedEmail = "MATSUSANITY@GMAIL.COM", EmailConfirmed = true, PasswordHash = hasher.HashPassword(null, "Matsusanity!123"), SecurityStamp = string.Empty });
 
-            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-            {
-                RoleId = ROLE_ID,
-                UserId = USER_ID
-            });
+            builder.Entity<IdentityUserRole<string>>()
+                    .HasData(
+                new IdentityUserRole<string> { RoleId = ROLE_ID, UserId = USER_ID });
+
+            builder.Entity<Administrator>()
+                    .HasData(
+                new Administrator {Id = 1, FirstName = "Yuki", LastName = "Matsushima", UserId = USER_ID });
         }
 
         public DbSet<Matsusanity.Models.Administrator> Administrator { get; set; }

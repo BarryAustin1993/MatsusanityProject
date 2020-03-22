@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Matsusanity.Data;
 using Matsusanity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Matsusanity.Controllers
 {
+    [Authorize(Roles = "Client, Administrator")]
     public class ClientsController : Controller
     {
         private readonly ApplicationDbContext _context;

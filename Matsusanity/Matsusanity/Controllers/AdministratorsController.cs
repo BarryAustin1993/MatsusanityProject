@@ -7,16 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Matsusanity.Data;
 using Matsusanity.Models;
+using Microsoft.AspNetCore.Authorization;
+using Matsusanity.ViewModels;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace Matsusanity.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class AdministratorsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public AdministratorsController(ApplicationDbContext context)
+        public AdministratorsController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         // GET: Administrators
@@ -26,6 +35,7 @@ namespace Matsusanity.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+       
         // GET: Administrators/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +53,68 @@ namespace Matsusanity.Controllers
             }
 
             return View(administrator);
+        }
+
+        // GET: Home Page Options
+        public IActionResult Home()
+        {
+            return View();
+        }
+        // GET: Home Page Options
+        public IActionResult CreatePersonalTrainerView()
+        {
+            CreatePersonalTrainerViewModel createPersonalTrainerViewModel = new CreatePersonalTrainerViewModel()
+            {
+                IdentityUser = new Microsoft.AspNetCore.Identity.IdentityUser(),
+                PersonalTrainer = new PersonalTrainer(),
+                IdentityUserRole = new IdentityUserRole<string>()
+            };
+            ViewData["IdentityUser"] = new SelectList(_context.Users, "ID", "ID");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePersonalTrainerView(CreatePersonalTrainerViewModel model, IdentityUser identityUser)
+        {
+            if (ModelState.IsValid)
+            {  
+                Guid guid = Guid.NewGuid();
+                var hasher = new PasswordHasher<IdentityUser>();
+                var role = _context.Roles.Where(r => r.Name == "Personal Trainer").FirstOrDefault();
+
+                identityUser = new Microsoft.AspNetCore.Identity.IdentityUser
+                {
+                    Id = guid.ToString(),
+                    Email = model.IdentityUser.Email,
+                    UserName = model.IdentityUser.Email,
+                    NormalizedEmail = model.IdentityUser.Email.ToUpper(),
+                    NormalizedUserName = model.IdentityUser.Email.ToUpper(),
+                    PasswordHash = hasher.HashPassword(null, model.IdentityUser.PasswordHash)
+                };
+
+                PersonalTrainer personalTrainer = new PersonalTrainer
+                {
+                    UserId = guid.ToString(),
+                    FirstName = model.PersonalTrainer.FirstName,
+                    LastName = model.PersonalTrainer.LastName
+                };
+
+                IdentityUserRole<string> identityUserRole = new Microsoft.AspNetCore.Identity.IdentityUserRole<string>
+                {
+                    UserId = guid.ToString(),
+                    RoleId = role.Id
+                };
+
+                _context.Add(identityUserRole);
+                _context.Add(identityUser);
+                _context.Add(personalTrainer);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "PersonalTrainers");
+            };
+       
+            ViewData["UserId"] = new SelectList(_context.PersonalTrainer, "Id", "Id", model.PersonalTrainer.UserId);
+            return View();
         }
 
         // GET: Administrators/Create
