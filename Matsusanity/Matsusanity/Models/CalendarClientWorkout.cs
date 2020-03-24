@@ -11,11 +11,9 @@ namespace Matsusanity.Models
     {
         [Key, Column(Order = 0)]
         public string ClientId { get; set; }
-        public virtual Client Client { get; set; }
-
+        
         [Key, Column(Order = 1)]
         public string WorkoutId { get; set; }
-        public virtual Workout Workout { get; set; }
 
         public DateTime Start { get; set; }
 

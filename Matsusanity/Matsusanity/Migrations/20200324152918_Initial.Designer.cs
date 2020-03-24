@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Matsusanity.Data.Migrations
+namespace Matsusanity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200320190935_AddedAdminAccount")]
-    partial class AddedAdminAccount
+    [Migration("20200324152918_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,175 @@ namespace Matsusanity.Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Matsusanity.Models.Administrator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Administrator");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstName = "Yuki",
+                            LastName = "Matsushima",
+                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                        });
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.CalendarClientWorkout", b =>
+                {
+                    b.Property<string>("WorkoutId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("WorkoutId", "ClientId");
+
+                    b.ToTable("CalendarClientWorkouts");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Client");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.PersonalTrainer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PersonalTrainer");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.Workout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ExerciseFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workouts");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -51,21 +220,21 @@ namespace Matsusanity.Data.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "5290cfb4-1c3e-4e19-a921-9dc999f59f88",
+                            ConcurrencyStamp = "92ac8fda-a676-4e8a-b553-5180ae912442",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "74e66144-eddb-413e-bb62-5c55bdc639ae",
-                            ConcurrencyStamp = "dd7d5495-a8cb-4fff-8b2c-b2da19c07666",
+                            Id = "4abb36e7-7ef8-43a6-911f-746fbada24ef",
+                            ConcurrencyStamp = "fa0627ef-0bda-4c19-b9ac-0f3abbb677b7",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "6480fa8f-b5f3-4206-92c7-3468d09921d7",
-                            ConcurrencyStamp = "11c90d97-200c-4a6f-b333-cb05f7c4cef4",
+                            Id = "fb5afc93-4a6a-4bcf-905c-50649ab4e646",
+                            ConcurrencyStamp = "59159485-fe6a-4a89-92d1-0c611bc1160c",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -164,17 +333,17 @@ namespace Matsusanity.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "18e93d04-f70f-45b9-8d40-2913690da36c",
+                            ConcurrencyStamp = "59b1e2aa-836b-4231-a124-19ea950a6b01",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
-                            NormalizedUserName = "MATSU",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFfpFUOtAPf9i0WeizqdjdY54BeIzB6i0CBv6Nz9gk9VJS+pkvdzx11FJFGwYpKjow==",
+                            NormalizedUserName = "MATSUSANITY@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBZrsKlcr8Xy2+DAk9XDRFjVsLXY2o+oGR+ISc2j1G3kf6+vQavEZWPen2wWWnf7vA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "Matsu"
+                            UserName = "Matsusanity@gmail.com"
                         });
                 });
 
@@ -263,6 +432,27 @@ namespace Matsusanity.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.Administrator", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.Client", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.PersonalTrainer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

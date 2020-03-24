@@ -4,16 +4,14 @@ using Matsusanity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Matsusanity.Data.Migrations
+namespace Matsusanity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200320201603_AddedInformationAdministrator")]
-    partial class AddedInformationAdministrator
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,6 +49,25 @@ namespace Matsusanity.Data.Migrations
                             LastName = "Matsushima",
                             UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
                         });
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.CalendarClientWorkout", b =>
+                {
+                    b.Property<string>("WorkoutId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("WorkoutId", "ClientId");
+
+                    b.ToTable("CalendarClientWorkouts");
                 });
 
             modelBuilder.Entity("Matsusanity.Models.Client", b =>
@@ -99,6 +116,78 @@ namespace Matsusanity.Data.Migrations
                     b.ToTable("PersonalTrainer");
                 });
 
+            modelBuilder.Entity("Matsusanity.Models.Workout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ExerciseFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RepsTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SetsTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightFive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightFour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightOne")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightThree")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WeightTwo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workouts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -129,21 +218,21 @@ namespace Matsusanity.Data.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "b1fcbe95-9868-4e7c-a787-d0f0f07d54a6",
+                            ConcurrencyStamp = "92ac8fda-a676-4e8a-b553-5180ae912442",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "79a67361-b66d-4362-94fb-4ebf1f7ea7bb",
-                            ConcurrencyStamp = "8dc74f51-1684-41fa-a8ee-da6fd9d462aa",
+                            Id = "4abb36e7-7ef8-43a6-911f-746fbada24ef",
+                            ConcurrencyStamp = "fa0627ef-0bda-4c19-b9ac-0f3abbb677b7",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "02977383-b170-40f1-b9cc-404be1beb0fe",
-                            ConcurrencyStamp = "b3611b26-966f-4be6-ab2c-8f6adccc06f3",
+                            Id = "fb5afc93-4a6a-4bcf-905c-50649ab4e646",
+                            ConcurrencyStamp = "59159485-fe6a-4a89-92d1-0c611bc1160c",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -242,13 +331,13 @@ namespace Matsusanity.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "91cc6eba-0f56-47d4-afe6-51a449da6884",
+                            ConcurrencyStamp = "59b1e2aa-836b-4231-a124-19ea950a6b01",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENsqz+o7g+1Yofz7bQaSmZsIRfhEz9rBiI3MsAUILKRY2FG81DBIpl0l3gjlRXLIbA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBZrsKlcr8Xy2+DAk9XDRFjVsLXY2o+oGR+ISc2j1G3kf6+vQavEZWPen2wWWnf7vA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
