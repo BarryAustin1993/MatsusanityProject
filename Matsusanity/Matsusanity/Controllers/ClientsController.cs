@@ -24,8 +24,8 @@ namespace Matsusanity.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Client.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.Client.Include(c => c.IdentityUser).FirstOrDefaultAsync();
+            return View(await applicationDbContext);
         }
 
         // GET: Clients/Details/5

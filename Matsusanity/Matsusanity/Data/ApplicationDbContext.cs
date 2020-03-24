@@ -41,6 +41,9 @@ namespace Matsusanity.Data
             builder.Entity<Administrator>()
                     .HasData(
                 new Administrator {Id = 1, FirstName = "Yuki", LastName = "Matsushima", UserId = USER_ID });
+
+            builder.Entity<CalendarClientWorkout>()
+                    .HasKey(c => new { c.WorkoutId, c.ClientId });
         }
 
         public DbSet<Matsusanity.Models.Administrator> Administrator { get; set; }
@@ -48,5 +51,9 @@ namespace Matsusanity.Data
         public DbSet<Matsusanity.Models.Client> Client { get; set; }
 
         public DbSet<Matsusanity.Models.PersonalTrainer> PersonalTrainer { get; set; }
+
+        public DbSet<Matsusanity.Models.Workout> Workouts { get; set; }
+
+        public DbSet<Matsusanity.Models.CalendarClientWorkout> CalendarClientWorkouts { get; set; }
     }
 }

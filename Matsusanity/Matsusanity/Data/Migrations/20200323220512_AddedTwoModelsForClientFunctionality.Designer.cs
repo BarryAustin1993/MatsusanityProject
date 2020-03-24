@@ -4,14 +4,16 @@ using Matsusanity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matsusanity.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200323220512_AddedTwoModelsForClientFunctionality")]
+    partial class AddedTwoModelsForClientFunctionality
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,35 +51,6 @@ namespace Matsusanity.Data.Migrations
                             LastName = "Matsushima",
                             UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
                         });
-                });
-
-            modelBuilder.Entity("Matsusanity.Models.CalendarClientWorkout", b =>
-                {
-                    b.Property<string>("WorkoutId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ClientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("ClientId1")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("End")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("WorkoutId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("WorkoutId", "ClientId");
-
-                    b.HasIndex("ClientId1");
-
-                    b.HasIndex("WorkoutId1");
-
-                    b.ToTable("CalendarClientWorkouts");
                 });
 
             modelBuilder.Entity("Matsusanity.Models.Client", b =>
@@ -126,78 +99,6 @@ namespace Matsusanity.Data.Migrations
                     b.ToTable("PersonalTrainer");
                 });
 
-            modelBuilder.Entity("Matsusanity.Models.Workout", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ExerciseFive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseFour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseOne")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseThree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExerciseTwo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RepsFive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RepsFour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RepsOne")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RepsThree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RepsTwo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SetsFive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SetsFour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SetsOne")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SetsThree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SetsTwo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WeightFive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WeightFour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WeightOne")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WeightThree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WeightTwo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Workouts");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -228,21 +129,21 @@ namespace Matsusanity.Data.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "6c08af47-4f86-4597-9fcc-dfd95a1321e4",
+                            ConcurrencyStamp = "4e8c7e9b-6d2d-42fc-b434-8c6b0b867e8c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "bf747327-e6b0-4475-b82e-34848034a61a",
-                            ConcurrencyStamp = "f538b197-19d1-4361-bbec-3f3616ceba23",
+                            Id = "8c44a882-eb08-43b9-ba4b-b85749e5d2dc",
+                            ConcurrencyStamp = "234ed191-aa7b-4601-a9c6-d11604eac742",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "d24c7058-9a6d-4c61-85b0-d781fb181fcd",
-                            ConcurrencyStamp = "533c52e2-292d-4352-b2c5-b7e11fbcacd3",
+                            Id = "052019be-6b6c-4a36-a28e-2ab2ef26c44a",
+                            ConcurrencyStamp = "81f29eab-467a-4954-95db-665a82d664c4",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -341,13 +242,13 @@ namespace Matsusanity.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4681b3a2-fa86-49d4-9aa2-01a5c02ccb9f",
+                            ConcurrencyStamp = "2965d764-3480-42b6-8d6b-308e8ec84a01",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMxtAuld0U8H0rMV7NjxEHsKTICe/m0ITGvxaV3SASnJyhjQDABlsWxRCA6ZYYdF4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBCkKkBPa3TGzb/iu6g8MEcEXXdn6N/tlHWvM0/Ydl2HETgs0mJ5WBD2YChAL8TXUw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -447,17 +348,6 @@ namespace Matsusanity.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Matsusanity.Models.CalendarClientWorkout", b =>
-                {
-                    b.HasOne("Matsusanity.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId1");
-
-                    b.HasOne("Matsusanity.Models.Workout", "Workout")
-                        .WithMany()
-                        .HasForeignKey("WorkoutId1");
                 });
 
             modelBuilder.Entity("Matsusanity.Models.Client", b =>

@@ -47,30 +47,6 @@ namespace Matsusanity.Controllers
             return View(personalTrainer);
         }
 
-        // GET: PersonalTrainers/Create
-        public IActionResult Create()
-        {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
-        }
-
-        // POST: PersonalTrainers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName")] PersonalTrainer personalTrainer)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(personalTrainer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", personalTrainer.UserId);
-            return View(personalTrainer);
-        }
-
         // GET: PersonalTrainers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
