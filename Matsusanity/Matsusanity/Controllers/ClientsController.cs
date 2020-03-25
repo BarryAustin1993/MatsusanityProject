@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Matsusanity.Data;
 using Matsusanity.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Matsusanity.Controllers
 {
@@ -20,6 +21,15 @@ namespace Matsusanity.Controllers
         {
             _context = context;
         }
+
+        public JsonResult GetEvents()
+        {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var client = _context.Client.Where(c => c.UserId == userId).FirstOrDefault();
+                var events = _context.CalendarClientWorkouts.Where(c => c.ClientId == client.Id).ToList();
+                return new JsonResult (events);
+        }
+        
 
         // GET: Clients
         public async Task<IActionResult> Index()

@@ -50,10 +50,13 @@ namespace Matsusanity.Migrations
                 name: "CalendarClientWorkouts",
                 columns: table => new
                 {
-                    ClientId = table.Column<string>(nullable: false),
-                    WorkoutId = table.Column<string>(nullable: false),
+                    ClientId = table.Column<int>(nullable: false),
+                    WorkoutId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
-                    End = table.Column<DateTime>(nullable: false)
+                    End = table.Column<DateTime>(nullable: true),
+                    AllDay = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -266,15 +269,15 @@ namespace Matsusanity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "92ac8fda-a676-4e8a-b553-5180ae912442", "Administrator", "ADMINISTRATOR" },
-                    { "4abb36e7-7ef8-43a6-911f-746fbada24ef", "fa0627ef-0bda-4c19-b9ac-0f3abbb677b7", "Personal Trainer", "PERSONAL TRAINER" },
-                    { "fb5afc93-4a6a-4bcf-905c-50649ab4e646", "59159485-fe6a-4a89-92d1-0c611bc1160c", "Client", "CLIENT" }
+                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "7ef1526b-8cdf-4630-9670-b9c44ba55a0d", "Administrator", "ADMINISTRATOR" },
+                    { "281ef9da-a0be-4bf7-99ac-2d4366583051", "9d670971-d233-4c8d-908a-97f879c19d91", "Personal Trainer", "PERSONAL TRAINER" },
+                    { "ee221f00-5322-49a7-a7fe-35dd82f672e9", "bac18e60-414b-409e-bcf1-f1902ed0aee5", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "59b1e2aa-836b-4231-a124-19ea950a6b01", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEBZrsKlcr8Xy2+DAk9XDRFjVsLXY2o+oGR+ISc2j1G3kf6+vQavEZWPen2wWWnf7vA==", null, false, "", false, "Matsusanity@gmail.com" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "91ea0033-a0b1-4e84-8c30-fa1729ab276a", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEGtbnbXlr9hv3zTrKPbhasGDoeEEvsmmL1GclPqcKQevSj9GStd1EX7M1xM0NeuyGw==", null, false, "", false, "Matsusanity@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Administrator",

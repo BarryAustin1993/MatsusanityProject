@@ -10,13 +10,22 @@ namespace Matsusanity.Models
     public class CalendarClientWorkout
     {
         [Key, Column(Order = 0)]
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
         
         [Key, Column(Order = 1)]
-        public string WorkoutId { get; set; }
+        public int WorkoutId { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
 
         public DateTime Start { get; set; }
 
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
+
+        [Display(Name = "All day event?")]
+        public bool AllDay { get; set; }
+
+
     }
 }

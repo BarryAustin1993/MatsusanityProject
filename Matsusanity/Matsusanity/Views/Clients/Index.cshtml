@@ -23,12 +23,12 @@
                 plugins: ['interaction', 'dayGrid', 'timeGrid'],
                 defaultView: 'timeGridDay',
                 header: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,timeGridDay' },
-
+                events: '@Url.RouteUrl(new { action="GetEvents", controller="Clients" })'
             });
             calendar.render();
         });
     </script>
-
+    
 
 </head>
 
