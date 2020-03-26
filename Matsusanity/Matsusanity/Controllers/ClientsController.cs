@@ -9,6 +9,8 @@ using Matsusanity.Data;
 using Matsusanity.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.Configuration;
+using Stripe;
 
 namespace Matsusanity.Controllers
 {
@@ -226,6 +228,39 @@ namespace Matsusanity.Controllers
         private bool ClientExists(int id)
         {
             return _context.Client.Any(e => e.Id == id);
+        }
+
+
+
+
+        public IActionResult Payment()
+        {
+            var StripePublishKey = ConfigurationManager.AppSettings["pk_test_ASAFc9Sb2Ftho2oSMSj36U9Y005Rm6N28g"];
+            ViewBag.StripePublishKey = StripePublishKey;
+            return View();
+        }
+        public IActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                Source = stripeToken
+            });
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 5000,//charge in cents
+                Description = "Sample Charge",
+                Currency = "usd",
+                Customer = customer.Id
+            });
+
+            // further application specific code goes here
+
+            return View();
         }
     }
 }

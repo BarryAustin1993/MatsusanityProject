@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Matsusanity.ActionFilters;
+using Stripe;
 
 namespace Matsusanity
 {
@@ -56,6 +57,8 @@ namespace Matsusanity
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +90,8 @@ namespace Matsusanity
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            StripeConfiguration.ApiKey = "pk_test_ASAFc9Sb2Ftho2oSMSj36U9Y005Rm6N28g";
         }
     }
 }
