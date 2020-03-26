@@ -24,12 +24,13 @@ namespace Matsusanity.Controllers
 
         public JsonResult GetEvents()
         {
-                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var client = _context.Client.Where(c => c.UserId == userId).FirstOrDefault();
-                var events = _context.CalendarClientWorkouts.Where(c => c.ClientId == client.Id).ToList();
-                return new JsonResult (events);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var client = _context.Client.Where(c => c.UserId == userId).FirstOrDefault();
+            var plan = client.WorkoutPlanId;
+            var events = _context.CalendarPlanWorkouts.Where(c => c.WorkoutPlanId == plan).ToList();
+            return new JsonResult(events);
         }
-        
+
 
         // GET: Clients
         public async Task<IActionResult> Index()
@@ -61,7 +62,8 @@ namespace Matsusanity.Controllers
         public IActionResult Create()
         {
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            Client client = new Client();
+            return View(client);
         }
 
         // POST: Clients/Create
@@ -69,12 +71,69 @@ namespace Matsusanity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName")] Client client)
+        public async Task<IActionResult> Create([Bind("Id,UserId,FirstName,LastName,Gender")] Client client)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                client.UserId = userId;
                 _context.Add(client);
                 await _context.SaveChangesAsync();
+                return RedirectToAction("ChooseAPlan", new { id = client.Id });
+            }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", client.UserId);
+            return View(client);
+        }
+
+        // GET: ClientsPlan
+        public async Task<IActionResult> ChooseAPlan(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var client = await _context.Client.FindAsync(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", client.UserId);
+            return View(client);
+        }
+
+        // POST: ClientsPlan
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChooseAPlan(int id, Client client)
+        {
+            if (id != client.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var clientDb = _context.Client.Where(c => c.Id == id).FirstOrDefault();
+                    clientDb.WorkoutPlanId = client.WorkoutPlanId;
+                    _context.Update(clientDb);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ClientExists(client.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", client.UserId);

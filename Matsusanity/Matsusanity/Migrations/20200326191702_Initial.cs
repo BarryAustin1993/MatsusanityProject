@@ -50,7 +50,7 @@ namespace Matsusanity.Migrations
                 name: "CalendarClientWorkouts",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(nullable: false),
+                    WorkoutPlanId = table.Column<int>(nullable: false),
                     WorkoutId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -60,39 +60,7 @@ namespace Matsusanity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CalendarClientWorkouts", x => new { x.WorkoutId, x.ClientId });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Workouts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExerciseOne = table.Column<string>(nullable: true),
-                    RepsOne = table.Column<string>(nullable: true),
-                    SetsOne = table.Column<string>(nullable: true),
-                    WeightOne = table.Column<string>(nullable: true),
-                    ExerciseTwo = table.Column<string>(nullable: true),
-                    RepsTwo = table.Column<string>(nullable: true),
-                    SetsTwo = table.Column<string>(nullable: true),
-                    WeightTwo = table.Column<string>(nullable: true),
-                    ExerciseThree = table.Column<string>(nullable: true),
-                    RepsThree = table.Column<string>(nullable: true),
-                    SetsThree = table.Column<string>(nullable: true),
-                    WeightThree = table.Column<string>(nullable: true),
-                    ExerciseFour = table.Column<string>(nullable: true),
-                    RepsFour = table.Column<string>(nullable: true),
-                    SetsFour = table.Column<string>(nullable: true),
-                    WeightFour = table.Column<string>(nullable: true),
-                    ExerciseFive = table.Column<string>(nullable: true),
-                    RepsFive = table.Column<string>(nullable: true),
-                    SetsFive = table.Column<string>(nullable: true),
-                    WeightFive = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Workouts", x => x.Id);
+                    table.PrimaryKey("PK_CalendarClientWorkouts", x => new { x.WorkoutId, x.WorkoutPlanId });
                 });
 
             migrationBuilder.CreateTable(
@@ -223,27 +191,6 @@ namespace Matsusanity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Client",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Client", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Client_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PersonalTrainer",
                 columns: table => new
                 {
@@ -264,20 +211,114 @@ namespace Matsusanity.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WorkoutPlans",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkoutPlans", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkoutPlans_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(nullable: true),
+                    WorkoutPlanId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Client_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Client_WorkoutPlans_WorkoutPlanId",
+                        column: x => x.WorkoutPlanId,
+                        principalTable: "WorkoutPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Workouts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WorkoutPlanId = table.Column<int>(nullable: true),
+                    ExerciseOne = table.Column<string>(nullable: true),
+                    RepsOne = table.Column<string>(nullable: true),
+                    SetsOne = table.Column<string>(nullable: true),
+                    WeightOne = table.Column<string>(nullable: true),
+                    ExerciseTwo = table.Column<string>(nullable: true),
+                    RepsTwo = table.Column<string>(nullable: true),
+                    SetsTwo = table.Column<string>(nullable: true),
+                    WeightTwo = table.Column<string>(nullable: true),
+                    ExerciseThree = table.Column<string>(nullable: true),
+                    RepsThree = table.Column<string>(nullable: true),
+                    SetsThree = table.Column<string>(nullable: true),
+                    WeightThree = table.Column<string>(nullable: true),
+                    ExerciseFour = table.Column<string>(nullable: true),
+                    RepsFour = table.Column<string>(nullable: true),
+                    SetsFour = table.Column<string>(nullable: true),
+                    WeightFour = table.Column<string>(nullable: true),
+                    ExerciseFive = table.Column<string>(nullable: true),
+                    RepsFive = table.Column<string>(nullable: true),
+                    SetsFive = table.Column<string>(nullable: true),
+                    WeightFive = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workouts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Workouts_WorkoutPlans_WorkoutPlanId",
+                        column: x => x.WorkoutPlanId,
+                        principalTable: "WorkoutPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "7ef1526b-8cdf-4630-9670-b9c44ba55a0d", "Administrator", "ADMINISTRATOR" },
-                    { "281ef9da-a0be-4bf7-99ac-2d4366583051", "9d670971-d233-4c8d-908a-97f879c19d91", "Personal Trainer", "PERSONAL TRAINER" },
-                    { "ee221f00-5322-49a7-a7fe-35dd82f672e9", "bac18e60-414b-409e-bcf1-f1902ed0aee5", "Client", "CLIENT" }
+                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "abf82160-f641-4d3d-b381-e36d2ffbc646", "Administrator", "ADMINISTRATOR" },
+                    { "51208f1f-fdd7-4af9-8f5d-32a5a6dac8a9", "477f0b06-924c-492e-8014-3bd541e69ec3", "Personal Trainer", "PERSONAL TRAINER" },
+                    { "899e3f20-d873-4d58-8baf-3d984665367b", "1c7151fa-ace7-48cf-86bb-0d506154e6bf", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "91ea0033-a0b1-4e84-8c30-fa1729ab276a", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEGtbnbXlr9hv3zTrKPbhasGDoeEEvsmmL1GclPqcKQevSj9GStd1EX7M1xM0NeuyGw==", null, false, "", false, "Matsusanity@gmail.com" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "8b717dcf-d8f4-4b2f-b2c3-f75ea4c43067", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEO3Zk2nm2OONcovoOJq+7GSzLt3TX7ScTbZeFZMAj2vMpfgCy6KXX3XyZZV/aAIKAg==", null, false, "", false, "Matsusanity@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "CalendarClientWorkouts",
+                columns: new[] { "WorkoutId", "WorkoutPlanId", "AllDay", "Description", "End", "Start", "Title" },
+                values: new object[] { 0, 0, false, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.InsertData(
                 table: "Administrator",
@@ -288,6 +329,32 @@ namespace Matsusanity.Migrations
                 table: "AspNetUserRoles",
                 columns: new[] { "UserId", "RoleId" },
                 values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d" });
+
+            migrationBuilder.InsertData(
+                table: "WorkoutPlans",
+                columns: new[] { "Id", "Description", "Name", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "This plan is designed for you to gain muscle", "Gain Muscle", "a18be9c0-aa65-4af8-bd17-00bd9344e575" },
+                    { 2, "This plan is designed for you to lose weight", "Lose Weight", "a18be9c0-aa65-4af8-bd17-00bd9344e575" },
+                    { 3, "This plan is designed for you to get fit", "Get Fit", "a18be9c0-aa65-4af8-bd17-00bd9344e575" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Workouts",
+                columns: new[] { "Id", "ExerciseFive", "ExerciseFour", "ExerciseOne", "ExerciseThree", "ExerciseTwo", "RepsFive", "RepsFour", "RepsOne", "RepsThree", "RepsTwo", "SetsFive", "SetsFour", "SetsOne", "SetsThree", "SetsTwo", "WeightFive", "WeightFour", "WeightOne", "WeightThree", "WeightTwo", "WorkoutPlanId" },
+                values: new object[,]
+                {
+                    { 1, "Jumping Jacks", "Body Squats", "Pull-Ups", "Mountains Climbers", "Push-Ups", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 1 },
+                    { 2, "Shoulder Shrugs", "Skull Crushers", "Bench Press", "OverHead Press", "Bicep Curls", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 1 },
+                    { 3, "Box Jumps", "Calf Raises", "Squats", "Leg Curl", "Leg Press", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 1 },
+                    { 4, "Jumping Jacks", "Body Squats", "Pull-Ups", "Mountains Climbers", "Push-Ups", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 2 },
+                    { 5, "Shoulder Shrugs", "Skull Crushers", "Bench Press", "OverHead Press", "Bicep Curls", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 2 },
+                    { 6, "Box Jumps", "Calf Raises", "Squats", "Leg Curl", "Leg Press", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 2 },
+                    { 7, "Jumping Jacks", "Body Squats", "Pull-Ups", "Mountains Climbers", "Push-Ups", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 3 },
+                    { 8, "Shoulder Shrugs", "Skull Crushers", "Bench Press", "OverHead Press", "Bicep Curls", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 3 },
+                    { 9, "Box Jumps", "Calf Raises", "Squats", "Leg Curl", "Leg Press", "10", "10", "10", "10", "10", "3", "3", "3", "3", "3", "10", "10", "10", "10", "10", 3 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Administrator_UserId",
@@ -339,9 +406,24 @@ namespace Matsusanity.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Client_WorkoutPlanId",
+                table: "Client",
+                column: "WorkoutPlanId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersonalTrainer_UserId",
                 table: "PersonalTrainer",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkoutPlans_UserId",
+                table: "WorkoutPlans",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Workouts_WorkoutPlanId",
+                table: "Workouts",
+                column: "WorkoutPlanId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -378,6 +460,9 @@ namespace Matsusanity.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "WorkoutPlans");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

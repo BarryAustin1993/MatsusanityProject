@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Matsusanity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200325172015_Initial")]
-    partial class Initial
+    [Migration("20200326191842_Changedname")]
+    partial class Changedname
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,12 +53,12 @@ namespace Matsusanity.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Matsusanity.Models.CalendarClientWorkout", b =>
+            modelBuilder.Entity("Matsusanity.Models.CalendarPlanWorkout", b =>
                 {
                     b.Property<int>("WorkoutId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("WorkoutPlanId")
                         .HasColumnType("int");
 
                     b.Property<bool>("AllDay")
@@ -76,9 +76,18 @@ namespace Matsusanity.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("WorkoutId", "ClientId");
+                    b.HasKey("WorkoutId", "WorkoutPlanId");
 
-                    b.ToTable("CalendarClientWorkouts");
+                    b.ToTable("CalendarPlanWorkouts");
+
+                    b.HasData(
+                        new
+                        {
+                            WorkoutId = 0,
+                            WorkoutPlanId = 0,
+                            AllDay = false,
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Matsusanity.Models.Client", b =>
@@ -91,15 +100,23 @@ namespace Matsusanity.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("WorkoutPlanId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("WorkoutPlanId");
 
                     b.ToTable("Client");
                 });
@@ -194,9 +211,287 @@ namespace Matsusanity.Migrations
                     b.Property<string>("WeightTwo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("WorkoutPlanId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("WorkoutPlanId");
+
                     b.ToTable("Workouts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ExerciseFive = "Jumping Jacks",
+                            ExerciseFour = "Body Squats",
+                            ExerciseOne = "Pull-Ups",
+                            ExerciseThree = "Mountains Climbers",
+                            ExerciseTwo = "Push-Ups",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ExerciseFive = "Shoulder Shrugs",
+                            ExerciseFour = "Skull Crushers",
+                            ExerciseOne = "Bench Press",
+                            ExerciseThree = "OverHead Press",
+                            ExerciseTwo = "Bicep Curls",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ExerciseFive = "Box Jumps",
+                            ExerciseFour = "Calf Raises",
+                            ExerciseOne = "Squats",
+                            ExerciseThree = "Leg Curl",
+                            ExerciseTwo = "Leg Press",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ExerciseFive = "Jumping Jacks",
+                            ExerciseFour = "Body Squats",
+                            ExerciseOne = "Pull-Ups",
+                            ExerciseThree = "Mountains Climbers",
+                            ExerciseTwo = "Push-Ups",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ExerciseFive = "Shoulder Shrugs",
+                            ExerciseFour = "Skull Crushers",
+                            ExerciseOne = "Bench Press",
+                            ExerciseThree = "OverHead Press",
+                            ExerciseTwo = "Bicep Curls",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ExerciseFive = "Box Jumps",
+                            ExerciseFour = "Calf Raises",
+                            ExerciseOne = "Squats",
+                            ExerciseThree = "Leg Curl",
+                            ExerciseTwo = "Leg Press",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ExerciseFive = "Jumping Jacks",
+                            ExerciseFour = "Body Squats",
+                            ExerciseOne = "Pull-Ups",
+                            ExerciseThree = "Mountains Climbers",
+                            ExerciseTwo = "Push-Ups",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ExerciseFive = "Shoulder Shrugs",
+                            ExerciseFour = "Skull Crushers",
+                            ExerciseOne = "Bench Press",
+                            ExerciseThree = "OverHead Press",
+                            ExerciseTwo = "Bicep Curls",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ExerciseFive = "Box Jumps",
+                            ExerciseFour = "Calf Raises",
+                            ExerciseOne = "Squats",
+                            ExerciseThree = "Leg Curl",
+                            ExerciseTwo = "Leg Press",
+                            RepsFive = "10",
+                            RepsFour = "10",
+                            RepsOne = "10",
+                            RepsThree = "10",
+                            RepsTwo = "10",
+                            SetsFive = "3",
+                            SetsFour = "3",
+                            SetsOne = "3",
+                            SetsThree = "3",
+                            SetsTwo = "3",
+                            WeightFive = "10",
+                            WeightFour = "10",
+                            WeightOne = "10",
+                            WeightThree = "10",
+                            WeightTwo = "10",
+                            WorkoutPlanId = 3
+                        });
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.WorkoutPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("WorkoutPlans");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "This plan is designed for you to gain muscle",
+                            Name = "Gain Muscle",
+                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "This plan is designed for you to lose weight",
+                            Name = "Lose Weight",
+                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "This plan is designed for you to get fit",
+                            Name = "Get Fit",
+                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -229,21 +524,21 @@ namespace Matsusanity.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "7ef1526b-8cdf-4630-9670-b9c44ba55a0d",
+                            ConcurrencyStamp = "48ccabed-d9cc-4476-a2d4-b1c1b8f5d11f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "281ef9da-a0be-4bf7-99ac-2d4366583051",
-                            ConcurrencyStamp = "9d670971-d233-4c8d-908a-97f879c19d91",
+                            Id = "f18e1621-6d2c-4073-acf0-a9f42309f1fb",
+                            ConcurrencyStamp = "d028eaa8-1a49-4897-b414-cda81d2ab44a",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "ee221f00-5322-49a7-a7fe-35dd82f672e9",
-                            ConcurrencyStamp = "bac18e60-414b-409e-bcf1-f1902ed0aee5",
+                            Id = "bbebef0d-47fb-4db6-8fad-79149fc28cef",
+                            ConcurrencyStamp = "df8bd14e-fb9c-43b4-8eb3-3277d97b6577",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -342,13 +637,13 @@ namespace Matsusanity.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "91ea0033-a0b1-4e84-8c30-fa1729ab276a",
+                            ConcurrencyStamp = "cc5f54ae-82bd-4acb-bdeb-657f1bbd2f73",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGtbnbXlr9hv3zTrKPbhasGDoeEEvsmmL1GclPqcKQevSj9GStd1EX7M1xM0NeuyGw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDxIaB8MqOnr+KUHxTbppNWTH80w3b6aNAZkENwfj5MBQFh0B54ofNPX+0d/INNmhQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -455,9 +750,27 @@ namespace Matsusanity.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.HasOne("Matsusanity.Models.WorkoutPlan", "WorkoutPlan")
+                        .WithMany()
+                        .HasForeignKey("WorkoutPlanId");
                 });
 
             modelBuilder.Entity("Matsusanity.Models.PersonalTrainer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.Workout", b =>
+                {
+                    b.HasOne("Matsusanity.Models.WorkoutPlan", "WorkoutPlan")
+                        .WithMany()
+                        .HasForeignKey("WorkoutPlanId");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.WorkoutPlan", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()

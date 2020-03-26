@@ -4,14 +4,16 @@ using Matsusanity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matsusanity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200326191702_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,89 +78,15 @@ namespace Matsusanity.Migrations
 
                     b.HasKey("WorkoutId", "WorkoutPlanId");
 
-                    b.ToTable("CalendarPlanWorkouts");
+                    b.ToTable("CalendarClientWorkouts");
 
                     b.HasData(
                         new
                         {
-                            WorkoutId = 1,
-                            WorkoutPlanId = 1,
-                            AllDay = true,
-                            Description = "no weights, just body",
-                            Start = new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Body"
-                        },
-                        new
-                        {
-                            WorkoutId = 2,
-                            WorkoutPlanId = 1,
-                            AllDay = true,
-                            Description = "Lower Body with equipment",
-                            Start = new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Upper"
-                        },
-                        new
-                        {
-                            WorkoutId = 3,
-                            WorkoutPlanId = 1,
-                            AllDay = true,
-                            Description = "Upper body with equipment",
-                            Start = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lower"
-                        },
-                        new
-                        {
-                            WorkoutId = 4,
-                            WorkoutPlanId = 2,
-                            AllDay = true,
-                            Description = "no weights, just body",
-                            Start = new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Body"
-                        },
-                        new
-                        {
-                            WorkoutId = 5,
-                            WorkoutPlanId = 2,
-                            AllDay = true,
-                            Description = "Lower Body with equipment",
-                            Start = new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Upper"
-                        },
-                        new
-                        {
-                            WorkoutId = 6,
-                            WorkoutPlanId = 2,
-                            AllDay = true,
-                            Description = "Upper body with equipment",
-                            Start = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lower"
-                        },
-                        new
-                        {
-                            WorkoutId = 7,
-                            WorkoutPlanId = 3,
-                            AllDay = true,
-                            Description = "no weights, just body",
-                            Start = new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Body"
-                        },
-                        new
-                        {
-                            WorkoutId = 8,
-                            WorkoutPlanId = 3,
-                            AllDay = true,
-                            Description = "Lower Body with equipment",
-                            Start = new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Upper"
-                        },
-                        new
-                        {
-                            WorkoutId = 9,
-                            WorkoutPlanId = 3,
-                            AllDay = true,
-                            Description = "Upper body with equipment",
-                            Start = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lower"
+                            WorkoutId = 0,
+                            WorkoutPlanId = 0,
+                            AllDay = false,
+                            Start = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -596,21 +524,21 @@ namespace Matsusanity.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "0f09cc7f-310b-4b3a-9521-184c5a58717f",
+                            ConcurrencyStamp = "abf82160-f641-4d3d-b381-e36d2ffbc646",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "0072deb7-a8bd-45ee-b8b0-a41d9934d497",
-                            ConcurrencyStamp = "c70c09c4-3506-4d96-9cfc-28e2168cad06",
+                            Id = "51208f1f-fdd7-4af9-8f5d-32a5a6dac8a9",
+                            ConcurrencyStamp = "477f0b06-924c-492e-8014-3bd541e69ec3",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "84ec30ce-3193-44f5-befa-44bce7081174",
-                            ConcurrencyStamp = "b56c75b0-fba1-4cc7-8183-83f94886120d",
+                            Id = "899e3f20-d873-4d58-8baf-3d984665367b",
+                            ConcurrencyStamp = "1c7151fa-ace7-48cf-86bb-0d506154e6bf",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -709,13 +637,13 @@ namespace Matsusanity.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c8cb71fc-e412-42f0-96bb-1e4c01856bf4",
+                            ConcurrencyStamp = "8b717dcf-d8f4-4b2f-b2c3-f75ea4c43067",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIRMqgDOy1tTmK1ZLVGZCh5ivYEv4Gk7VYQHGxcp84nvK3fQ+vQmIOfFh3K3qTJaCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO3Zk2nm2OONcovoOJq+7GSzLt3TX7ScTbZeFZMAj2vMpfgCy6KXX3XyZZV/aAIKAg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace Matsusanity.Models
 {
-    public class Client
+    public class WorkoutPlan
     {
-        public Client()
-        {
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -21,14 +17,8 @@ namespace Matsusanity.Models
         public string UserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 
-        public string FirstName { get; set; }
+        public string Name { get; set; }
 
-        public string LastName { get; set; }
-
-        public string Gender { get; set; }
-
-        [ForeignKey("WorkoutPlan")]
-        public int? WorkoutPlanId { get; set; }
-        public WorkoutPlan WorkoutPlan { get; set; }
+        public string Description { get; set; }
     }
 }

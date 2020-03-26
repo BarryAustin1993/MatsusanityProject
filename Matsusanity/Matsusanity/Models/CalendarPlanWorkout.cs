@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Matsusanity.Models
 {
-    public class CalendarClientWorkout
+    public class CalendarPlanWorkout
     {
         [Key, Column(Order = 0)]
-        public int ClientId { get; set; }
+        public int WorkoutPlanId { get; set; }
         
         [Key, Column(Order = 1)]
         public int WorkoutId { get; set; }
@@ -23,7 +23,7 @@ namespace Matsusanity.Models
 
         public DateTime? End { get; set; }
 
-        [Display(Name = "All day event?")]
+        [Display(Name = "All Day Event?")]
         public bool AllDay { get; set; }
 
 

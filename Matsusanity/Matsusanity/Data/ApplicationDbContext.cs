@@ -40,11 +40,43 @@ namespace Matsusanity.Data
 
             builder.Entity<Administrator>()
                     .HasData(
-                new Administrator {Id = 1, FirstName = "Yuki", LastName = "Matsushima", UserId = USER_ID });
+                new Administrator { Id = 1, FirstName = "Yuki", LastName = "Matsushima", UserId = USER_ID });
 
-            builder.Entity<CalendarClientWorkout>()
-                    .HasKey(c => new { c.WorkoutId, c.ClientId });
+            builder.Entity<CalendarPlanWorkout>()
+                    .HasKey(c => new { c.WorkoutId, c.WorkoutPlanId });
+
+            builder.Entity<WorkoutPlan>()
+                    .HasData(
+                new WorkoutPlan { Id = 1, UserId = USER_ID, Name = "Gain Muscle", Description = "This plan is designed for you to gain muscle" },
+                new WorkoutPlan { Id = 2, UserId = USER_ID, Name = "Lose Weight", Description = "This plan is designed for you to lose weight" },
+                new WorkoutPlan { Id = 3, UserId = USER_ID, Name = "Get Fit", Description = "This plan is designed for you to get fit" });
+
+            builder.Entity<Workout>()
+                    .HasData(
+                new Workout { Id = 1, WorkoutPlanId = 1, ExerciseOne = "Pull-Ups", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Push-Ups", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "Mountains Climbers", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Body Squats", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Jumping Jacks", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 2, WorkoutPlanId = 1, ExerciseOne = "Bench Press", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Bicep Curls", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "OverHead Press", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Skull Crushers", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Shoulder Shrugs", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 3, WorkoutPlanId = 1, ExerciseOne = "Squats", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Leg Press", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "Leg Curl", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Calf Raises", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Box Jumps", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 4, WorkoutPlanId = 2, ExerciseOne = "Pull-Ups", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Push-Ups", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "Mountains Climbers", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Body Squats", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Jumping Jacks", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 5, WorkoutPlanId = 2, ExerciseOne = "Bench Press", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Bicep Curls", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "OverHead Press", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Skull Crushers", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Shoulder Shrugs", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 6, WorkoutPlanId = 2, ExerciseOne = "Squats", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Leg Press", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "Leg Curl", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Calf Raises", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Box Jumps", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 7, WorkoutPlanId = 3, ExerciseOne = "Pull-Ups", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Push-Ups", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "Mountains Climbers", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Body Squats", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Jumping Jacks", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 8, WorkoutPlanId = 3, ExerciseOne = "Bench Press", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Bicep Curls", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "OverHead Press", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Skull Crushers", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Shoulder Shrugs", RepsFive = "10", SetsFive = "3", WeightFive = "10" },
+                new Workout { Id = 9, WorkoutPlanId = 3, ExerciseOne = "Squats", RepsOne = "10", SetsOne = "3", WeightOne = "10", ExerciseTwo = "Leg Press", RepsTwo = "10", SetsTwo = "3", WeightTwo = "10", ExerciseThree = "Leg Curl", RepsThree = "10", SetsThree = "3", WeightThree = "10", ExerciseFour = "Calf Raises", RepsFour = "10", SetsFour = "3", WeightFour = "10", ExerciseFive = "Box Jumps", RepsFive = "10", SetsFive = "3", WeightFive = "10" });
+
+            builder.Entity<CalendarPlanWorkout>()
+                    .HasData(
+                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 1, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 2, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 3, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 4, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 5, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 6, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 7, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 8, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
+                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 9, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true });
         }
+
+
 
         public DbSet<Matsusanity.Models.Administrator> Administrator { get; set; }
 
@@ -54,6 +86,8 @@ namespace Matsusanity.Data
 
         public DbSet<Matsusanity.Models.Workout> Workouts { get; set; }
 
-        public DbSet<Matsusanity.Models.CalendarClientWorkout> CalendarClientWorkouts { get; set; }
+        public DbSet<Matsusanity.Models.CalendarPlanWorkout> CalendarPlanWorkouts { get; set; }
+
+        public DbSet<Matsusanity.Models.WorkoutPlan> WorkoutPlans { get; set; }
     }
 }
