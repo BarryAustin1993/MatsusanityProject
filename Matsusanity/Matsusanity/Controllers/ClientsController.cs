@@ -27,7 +27,7 @@ namespace Matsusanity.Controllers
         public JsonResult GetEvents()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var client = _context.Client.Where(c => c.UserId == userId).FirstOrDefault();
+            var client = _context.Clients.Where(c => c.UserId == userId).FirstOrDefault();
             var plan = client.WorkoutPlanId;
             var events = _context.CalendarPlanWorkouts.Where(c => c.WorkoutPlanId == plan).ToList();
             return new JsonResult(events);
@@ -37,7 +37,7 @@ namespace Matsusanity.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Client.Include(c => c.IdentityUser).FirstOrDefaultAsync();
+            var applicationDbContext = _context.Clients.Include(c => c.IdentityUser).FirstOrDefaultAsync();
             return View(await applicationDbContext);
         }
 
@@ -49,7 +49,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client
+            var client = await _context.Clients
                 .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (client == null)
@@ -95,7 +95,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
                 return NotFound();
@@ -120,7 +120,7 @@ namespace Matsusanity.Controllers
             {
                 try
                 {
-                    var clientDb = _context.Client.Where(c => c.Id == id).FirstOrDefault();
+                    var clientDb = _context.Clients.Where(c => c.Id == id).FirstOrDefault();
                     clientDb.WorkoutPlanId = client.WorkoutPlanId;
                     _context.Update(clientDb);
                     await _context.SaveChangesAsync();
@@ -150,7 +150,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
                 return NotFound();
@@ -203,7 +203,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Client
+            var client = await _context.Clients
                 .Include(c => c.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (client == null)
@@ -219,15 +219,15 @@ namespace Matsusanity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var client = await _context.Client.FindAsync(id);
-            _context.Client.Remove(client);
+            var client = await _context.Clients.FindAsync(id);
+            _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ClientExists(int id)
         {
-            return _context.Client.Any(e => e.Id == id);
+            return _context.Clients.Any(e => e.Id == id);
         }
 
 
@@ -257,7 +257,7 @@ namespace Matsusanity.Controllers
 
             PersonalTrainersClients PTC = new PersonalTrainersClients();
             PTC.PersonalTrainerId = PersonalTrainer.Id;
-            PTC.ClientId = _context.Client.Where(x => x.IdentityUser.Id == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault().Id;
+            PTC.ClientId = _context.Clients.Where(x => x.IdentityUser.Id == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault().Id;
             _context.PersonalTrainersClients.Add(PTC);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Matsusanity.Data;
 using Matsusanity.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Matsusanity.Controllers
 {
@@ -24,9 +25,9 @@ namespace Matsusanity.Controllers
         // GET: PersonalTrainers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.PersonalTrainers.Include(p => p.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
-        }
+            var applicationDbContext = _context.PersonalTrainers.Include(c => c.IdentityUser).FirstOrDefaultAsync();
+            return View(await applicationDbContext);
+        } 
 
         // GET: PersonalTrainers/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -69,7 +70,7 @@ namespace Matsusanity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,FirstName,LastName")] PersonalTrainer personalTrainer)
+        public async Task<IActionResult> Edit(int id, PersonalTrainer personalTrainer)
         {
             if (id != personalTrainer.Id)
             {
@@ -133,6 +134,18 @@ namespace Matsusanity.Controllers
         private bool PersonalTrainerExists(int id)
         {
             return _context.PersonalTrainers.Any(e => e.Id == id);
+        }
+
+        // GET: Show Clients
+        public async Task<IActionResult> ShowClients()
+        {
+            var LoggedInPersonalTrainer = _context.PersonalTrainers.Where(x => x.IdentityUser.Id == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault();
+            var id = LoggedInPersonalTrainer.Id;
+            var ListOfClientsIds = _context.PersonalTrainersClients.Where(m => m.PersonalTrainerId == id).Select(x => x.ClientId);
+            var clients = _context.Clients.Where(c => ListOfClientsIds.Contains(c.Id));
+
+
+            return View(clients);
         }
     }
 }

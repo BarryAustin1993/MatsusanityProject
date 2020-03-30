@@ -81,9 +81,9 @@ namespace Matsusanity.Data
 
 
 
-        public DbSet<Matsusanity.Models.Administrator> Administrator { get; set; }
+        public DbSet<Matsusanity.Models.Administrator> Administrators { get; set; }
 
-        public DbSet<Matsusanity.Models.Client> Client { get; set; }
+        public DbSet<Matsusanity.Models.Client> Clients { get; set; }
 
         public DbSet<Matsusanity.Models.PersonalTrainer> PersonalTrainers { get; set; }
 

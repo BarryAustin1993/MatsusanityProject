@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Matsusanity.Migrations
 {
-    public partial class iNITIAL : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -203,20 +203,21 @@ namespace Matsusanity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonalTrainerClient",
+                name: "PersonalTrainers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true),
+                    InPersonSessions = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonalTrainerClient", x => x.Id);
+                    table.PrimaryKey("PK_PersonalTrainers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PersonalTrainerClient_AspNetUsers_UserId",
+                        name: "FK_PersonalTrainers_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -317,15 +318,15 @@ namespace Matsusanity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "c0d62814-9066-437f-bc28-fbf046d25e53", "Administrator", "ADMINISTRATOR" },
-                    { "0de26d2d-596f-4e21-8cee-4110bdae9dee", "149f91f4-b7d9-4ba3-bd34-b00c033f94c7", "Personal Trainer", "PERSONAL TRAINER" },
-                    { "48ec6a4a-1705-4f08-9e0a-bfd6347e019b", "c86a93db-338e-4b45-960f-07367adf67a0", "Client", "CLIENT" }
+                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "ed3cabe8-400a-458b-b93f-fd2a1db877b4", "Administrator", "ADMINISTRATOR" },
+                    { "5e8d9ce7-5855-4387-ad20-4661f3812f69", "d5097acf-307e-4766-8fff-df8bf4b0e82d", "Personal Trainer", "PERSONAL TRAINER" },
+                    { "4446da1c-6691-4045-9736-6cd4c5d8cf15", "f7284e01-1af2-4e5b-92ae-79187ab5d8d2", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "b12ec8b3-16b1-4122-829e-7af65bfb165f", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEAfKAr9ZtllapQ+OfPAYTZwlsadnKil3im1w1RvgSdf1SfJkNTYSDR8D4jqq3wprdg==", null, false, "", false, "Matsusanity@gmail.com" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "83200414-71f0-489a-858c-2987c08bb605", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEJ2aXds3INtVU+BgPsO/JvY6QX2QHPfHxwPdWH3RvVAo5alme/Lqxo/X3z3EreXU+Q==", null, false, "", false, "Matsusanity@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "CalendarPlanWorkouts",
@@ -434,8 +435,8 @@ namespace Matsusanity.Migrations
                 column: "WorkoutPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonalTrainerClient_UserId",
-                table: "PersonalTrainerClient",
+                name: "IX_PersonalTrainers_UserId",
+                table: "PersonalTrainers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -476,7 +477,7 @@ namespace Matsusanity.Migrations
                 name: "Client");
 
             migrationBuilder.DropTable(
-                name: "PersonalTrainerClient");
+                name: "PersonalTrainers");
 
             migrationBuilder.DropTable(
                 name: "PersonalTrainersClients");

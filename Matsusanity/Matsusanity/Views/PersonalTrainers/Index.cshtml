@@ -1,47 +1,47 @@
-﻿@model IEnumerable<Matsusanity.Models.PersonalTrainer>
+﻿@model Matsusanity.Models.PersonalTrainer
 
-@{
-    ViewData["Title"] = "Index";
-}
+<html>
+<head>
+    @{
+        ViewData["Title"] = "Index";
+    }
 
-<h1>Index</h1>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="~/css/PersonalTrainer.css" />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css' rel="stylesheet">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css' rel='stylesheet' />
+    @*<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.min.css' rel='stylesheet' />*@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentityUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js'></script>
+    @*<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.min.js'></script>*@
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid'],
+                defaultView: 'dayGrid',
+                header: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,dayGridWeek,dayGrid' },
+                @*events: '@Url.RouteUrl(new { action="GetEvents", controller="PersonalTrainers" })'*@
+            });
+            calendar.render();
+        });
+    </script>
+
+
+</head>
+
+
+<body>
+
+    <div class="sidenav">
+        <a asp-action="Edit" asp-route-id="@Model.Id">Update Account Information</a>
+        <a asp-action="ShowClients" asp-route-id="@Model.Id">Show My Clients</a>
+        <a asp-action="CreateAWorkout" asp-route-id="@Model.Id">Create A Workout</a>
+    </div>
+
+    <div id='calendar'></div>
+
+</body>
+</html> 

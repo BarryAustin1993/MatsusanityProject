@@ -31,7 +31,7 @@ namespace Matsusanity.Controllers
         // GET: Administrators
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Administrator.Include(a => a.IdentityUser);
+            var applicationDbContext = _context.Administrators.Include(a => a.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -44,7 +44,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var administrator = await _context.Administrator
+            var administrator = await _context.Administrators
                 .Include(a => a.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (administrator == null)
@@ -149,7 +149,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var administrator = await _context.Administrator.FindAsync(id);
+            var administrator = await _context.Administrators.FindAsync(id);
             if (administrator == null)
             {
                 return NotFound();
@@ -202,7 +202,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var administrator = await _context.Administrator
+            var administrator = await _context.Administrators
                 .Include(a => a.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (administrator == null)
@@ -218,15 +218,15 @@ namespace Matsusanity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var administrator = await _context.Administrator.FindAsync(id);
-            _context.Administrator.Remove(administrator);
+            var administrator = await _context.Administrators.FindAsync(id);
+            _context.Administrators.Remove(administrator);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdministratorExists(int id)
         {
-            return _context.Administrator.Any(e => e.Id == id);
+            return _context.Administrators.Any(e => e.Id == id);
         }
     }
 }
