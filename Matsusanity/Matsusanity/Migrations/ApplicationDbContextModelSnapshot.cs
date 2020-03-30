@@ -213,7 +213,20 @@ namespace Matsusanity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PersonalTrainer");
+                    b.ToTable("PersonalTrainerClient");
+                });
+
+            modelBuilder.Entity("Matsusanity.Models.PersonalTrainersClients", b =>
+                {
+                    b.Property<int>("PersonalTrainerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonalTrainerId", "ClientId");
+
+                    b.ToTable("PersonalTrainersClients");
                 });
 
             modelBuilder.Entity("Matsusanity.Models.Workout", b =>
@@ -596,21 +609,21 @@ namespace Matsusanity.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "0f09cc7f-310b-4b3a-9521-184c5a58717f",
+                            ConcurrencyStamp = "c0d62814-9066-437f-bc28-fbf046d25e53",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "0072deb7-a8bd-45ee-b8b0-a41d9934d497",
-                            ConcurrencyStamp = "c70c09c4-3506-4d96-9cfc-28e2168cad06",
+                            Id = "0de26d2d-596f-4e21-8cee-4110bdae9dee",
+                            ConcurrencyStamp = "149f91f4-b7d9-4ba3-bd34-b00c033f94c7",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "84ec30ce-3193-44f5-befa-44bce7081174",
-                            ConcurrencyStamp = "b56c75b0-fba1-4cc7-8183-83f94886120d",
+                            Id = "48ec6a4a-1705-4f08-9e0a-bfd6347e019b",
+                            ConcurrencyStamp = "c86a93db-338e-4b45-960f-07367adf67a0",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -709,13 +722,13 @@ namespace Matsusanity.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c8cb71fc-e412-42f0-96bb-1e4c01856bf4",
+                            ConcurrencyStamp = "b12ec8b3-16b1-4122-829e-7af65bfb165f",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIRMqgDOy1tTmK1ZLVGZCh5ivYEv4Gk7VYQHGxcp84nvK3fQ+vQmIOfFh3K3qTJaCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAfKAr9ZtllapQ+OfPAYTZwlsadnKil3im1w1RvgSdf1SfJkNTYSDR8D4jqq3wprdg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

@@ -74,6 +74,9 @@ namespace Matsusanity.Data
                 new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 7, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
                 new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 8, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
                 new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 9, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true });
+
+            builder.Entity<PersonalTrainersClients>()
+                    .HasKey(c => new { c.PersonalTrainerId, c.ClientId });
         }
 
 
@@ -82,12 +85,14 @@ namespace Matsusanity.Data
 
         public DbSet<Matsusanity.Models.Client> Client { get; set; }
 
-        public DbSet<Matsusanity.Models.PersonalTrainer> PersonalTrainer { get; set; }
+        public DbSet<Matsusanity.Models.PersonalTrainer> PersonalTrainers { get; set; }
 
         public DbSet<Matsusanity.Models.Workout> Workouts { get; set; }
 
         public DbSet<Matsusanity.Models.CalendarPlanWorkout> CalendarPlanWorkouts { get; set; }
 
         public DbSet<Matsusanity.Models.WorkoutPlan> WorkoutPlans { get; set; }
+
+        public DbSet<Matsusanity.Models.PersonalTrainersClients> PersonalTrainersClients { get; set; }
     }
 }

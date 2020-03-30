@@ -113,7 +113,7 @@ namespace Matsusanity.Controllers
                 return RedirectToAction("Index", "PersonalTrainers");
             };
        
-            ViewData["UserId"] = new SelectList(_context.PersonalTrainer, "Id", "Id", model.PersonalTrainer.UserId);
+            ViewData["UserId"] = new SelectList(_context.PersonalTrainers, "Id", "Id", model.PersonalTrainer.UserId);
             return View();
         }
 

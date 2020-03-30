@@ -231,6 +231,39 @@ namespace Matsusanity.Controllers
         }
 
 
+        public IActionResult PickAPersonalTrainer()
+        {
+            var PersonalTrainers = _context.PersonalTrainers.ToList();
+            return View(PersonalTrainers);
+        }
+
+
+        // GET: Trainer
+        public async Task<IActionResult> AddTrainer(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var PersonalTrainer = await _context.PersonalTrainers.FindAsync(id);
+            if (PersonalTrainer == null)
+            {
+                return NotFound();
+            }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", PersonalTrainer.UserId);
+
+            this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            PersonalTrainersClients PTC = new PersonalTrainersClients();
+            PTC.PersonalTrainerId = PersonalTrainer.Id;
+            PTC.ClientId = _context.Client.Where(x => x.IdentityUser.Id == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault().Id;
+            _context.PersonalTrainersClients.Add(PTC);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+       
 
 
         public IActionResult Payment()

@@ -24,7 +24,7 @@ namespace Matsusanity.Controllers
         // GET: PersonalTrainers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.PersonalTrainer.Include(p => p.IdentityUser);
+            var applicationDbContext = _context.PersonalTrainers.Include(p => p.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,7 +36,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var personalTrainer = await _context.PersonalTrainer
+            var personalTrainer = await _context.PersonalTrainers
                 .Include(p => p.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (personalTrainer == null)
@@ -55,7 +55,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var personalTrainer = await _context.PersonalTrainer.FindAsync(id);
+            var personalTrainer = await _context.PersonalTrainers.FindAsync(id);
             if (personalTrainer == null)
             {
                 return NotFound();
@@ -108,7 +108,7 @@ namespace Matsusanity.Controllers
                 return NotFound();
             }
 
-            var personalTrainer = await _context.PersonalTrainer
+            var personalTrainer = await _context.PersonalTrainers
                 .Include(p => p.IdentityUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (personalTrainer == null)
@@ -124,15 +124,15 @@ namespace Matsusanity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var personalTrainer = await _context.PersonalTrainer.FindAsync(id);
-            _context.PersonalTrainer.Remove(personalTrainer);
+            var personalTrainer = await _context.PersonalTrainers.FindAsync(id);
+            _context.PersonalTrainers.Remove(personalTrainer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PersonalTrainerExists(int id)
         {
-            return _context.PersonalTrainer.Any(e => e.Id == id);
+            return _context.PersonalTrainers.Any(e => e.Id == id);
         }
     }
 }

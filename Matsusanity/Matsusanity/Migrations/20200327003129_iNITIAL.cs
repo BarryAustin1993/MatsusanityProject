@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Matsusanity.Migrations
 {
-    public partial class Initial : Migration
+    public partial class iNITIAL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +47,7 @@ namespace Matsusanity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CalendarClientWorkouts",
+                name: "CalendarPlanWorkouts",
                 columns: table => new
                 {
                     WorkoutPlanId = table.Column<int>(nullable: false),
@@ -60,7 +60,19 @@ namespace Matsusanity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CalendarClientWorkouts", x => new { x.WorkoutId, x.WorkoutPlanId });
+                    table.PrimaryKey("PK_CalendarPlanWorkouts", x => new { x.WorkoutId, x.WorkoutPlanId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonalTrainersClients",
+                columns: table => new
+                {
+                    PersonalTrainerId = table.Column<int>(nullable: false),
+                    ClientId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonalTrainersClients", x => new { x.PersonalTrainerId, x.ClientId });
                 });
 
             migrationBuilder.CreateTable(
@@ -191,7 +203,7 @@ namespace Matsusanity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonalTrainer",
+                name: "PersonalTrainerClient",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -202,9 +214,9 @@ namespace Matsusanity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonalTrainer", x => x.Id);
+                    table.PrimaryKey("PK_PersonalTrainerClient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PersonalTrainer_AspNetUsers_UserId",
+                        name: "FK_PersonalTrainerClient_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -305,20 +317,31 @@ namespace Matsusanity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "abf82160-f641-4d3d-b381-e36d2ffbc646", "Administrator", "ADMINISTRATOR" },
-                    { "51208f1f-fdd7-4af9-8f5d-32a5a6dac8a9", "477f0b06-924c-492e-8014-3bd541e69ec3", "Personal Trainer", "PERSONAL TRAINER" },
-                    { "899e3f20-d873-4d58-8baf-3d984665367b", "1c7151fa-ace7-48cf-86bb-0d506154e6bf", "Client", "CLIENT" }
+                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "c0d62814-9066-437f-bc28-fbf046d25e53", "Administrator", "ADMINISTRATOR" },
+                    { "0de26d2d-596f-4e21-8cee-4110bdae9dee", "149f91f4-b7d9-4ba3-bd34-b00c033f94c7", "Personal Trainer", "PERSONAL TRAINER" },
+                    { "48ec6a4a-1705-4f08-9e0a-bfd6347e019b", "c86a93db-338e-4b45-960f-07367adf67a0", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "8b717dcf-d8f4-4b2f-b2c3-f75ea4c43067", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEO3Zk2nm2OONcovoOJq+7GSzLt3TX7ScTbZeFZMAj2vMpfgCy6KXX3XyZZV/aAIKAg==", null, false, "", false, "Matsusanity@gmail.com" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "b12ec8b3-16b1-4122-829e-7af65bfb165f", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEAfKAr9ZtllapQ+OfPAYTZwlsadnKil3im1w1RvgSdf1SfJkNTYSDR8D4jqq3wprdg==", null, false, "", false, "Matsusanity@gmail.com" });
 
             migrationBuilder.InsertData(
-                table: "CalendarClientWorkouts",
+                table: "CalendarPlanWorkouts",
                 columns: new[] { "WorkoutId", "WorkoutPlanId", "AllDay", "Description", "End", "Start", "Title" },
-                values: new object[] { 0, 0, false, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
+                values: new object[,]
+                {
+                    { 1, 1, true, "no weights, just body", null, new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Body" },
+                    { 2, 1, true, "Lower Body with equipment", null, new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Upper" },
+                    { 3, 1, true, "Upper body with equipment", null, new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lower" },
+                    { 4, 2, true, "no weights, just body", null, new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Body" },
+                    { 5, 2, true, "Lower Body with equipment", null, new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Upper" },
+                    { 6, 2, true, "Upper body with equipment", null, new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lower" },
+                    { 7, 3, true, "no weights, just body", null, new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Body" },
+                    { 8, 3, true, "Lower Body with equipment", null, new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "Upper" },
+                    { 9, 3, true, "Upper body with equipment", null, new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lower" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Administrator",
@@ -411,8 +434,8 @@ namespace Matsusanity.Migrations
                 column: "WorkoutPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonalTrainer_UserId",
-                table: "PersonalTrainer",
+                name: "IX_PersonalTrainerClient_UserId",
+                table: "PersonalTrainerClient",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -447,13 +470,16 @@ namespace Matsusanity.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CalendarClientWorkouts");
+                name: "CalendarPlanWorkouts");
 
             migrationBuilder.DropTable(
                 name: "Client");
 
             migrationBuilder.DropTable(
-                name: "PersonalTrainer");
+                name: "PersonalTrainerClient");
+
+            migrationBuilder.DropTable(
+                name: "PersonalTrainersClients");
 
             migrationBuilder.DropTable(
                 name: "Workouts");
