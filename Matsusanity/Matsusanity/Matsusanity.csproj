@@ -7,6 +7,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.45.0.1914" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />

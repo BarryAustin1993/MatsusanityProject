@@ -39,7 +39,7 @@ namespace Matsusanity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Administrator");
+                    b.ToTable("Administrators");
 
                     b.HasData(
                         new
@@ -74,6 +74,9 @@ namespace Matsusanity.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("WorkoutId", "WorkoutPlanId");
 
                     b.ToTable("CalendarPlanWorkouts");
@@ -86,7 +89,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "no weights, just body",
                             Start = new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Body"
+                            Title = "Body",
+                            Url = "https://localhost:44366/clients/Workout/1"
                         },
                         new
                         {
@@ -95,7 +99,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "Lower Body with equipment",
                             Start = new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Upper"
+                            Title = "Upper",
+                            Url = "https://localhost:44366/clients/Workout/2"
                         },
                         new
                         {
@@ -104,7 +109,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "Upper body with equipment",
                             Start = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lower"
+                            Title = "Lower",
+                            Url = "https://localhost:44366/clients/Workout/3"
                         },
                         new
                         {
@@ -113,7 +119,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "no weights, just body",
                             Start = new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Body"
+                            Title = "Body",
+                            Url = "https://localhost:44366/clients/Workout/4"
                         },
                         new
                         {
@@ -122,7 +129,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "Lower Body with equipment",
                             Start = new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Upper"
+                            Title = "Upper",
+                            Url = "https://localhost:44366/clients/Workout/5"
                         },
                         new
                         {
@@ -131,7 +139,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "Upper body with equipment",
                             Start = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lower"
+                            Title = "Lower",
+                            Url = "https://localhost:44366/clients/Workout/6"
                         },
                         new
                         {
@@ -140,7 +149,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "no weights, just body",
                             Start = new DateTime(2020, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Body"
+                            Title = "Body",
+                            Url = "https://localhost:44366/clients/Workout/7"
                         },
                         new
                         {
@@ -149,7 +159,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "Lower Body with equipment",
                             Start = new DateTime(2020, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Upper"
+                            Title = "Upper",
+                            Url = "https://localhost:44366/clients/Workout/8"
                         },
                         new
                         {
@@ -158,7 +169,8 @@ namespace Matsusanity.Migrations
                             AllDay = true,
                             Description = "Upper body with equipment",
                             Start = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lower"
+                            Title = "Lower",
+                            Url = "https://localhost:44366/clients/Workout/9"
                         });
                 });
 
@@ -190,7 +202,7 @@ namespace Matsusanity.Migrations
 
                     b.HasIndex("WorkoutPlanId");
 
-                    b.ToTable("Client");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Matsusanity.Models.PersonalTrainer", b =>
@@ -549,12 +561,7 @@ namespace Matsusanity.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("WorkoutPlans");
 
@@ -563,22 +570,19 @@ namespace Matsusanity.Migrations
                         {
                             Id = 1,
                             Description = "This plan is designed for you to gain muscle",
-                            Name = "Gain Muscle",
-                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                            Name = "Gain Muscle"
                         },
                         new
                         {
                             Id = 2,
                             Description = "This plan is designed for you to lose weight",
-                            Name = "Lose Weight",
-                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                            Name = "Lose Weight"
                         },
                         new
                         {
                             Id = 3,
                             Description = "This plan is designed for you to get fit",
-                            Name = "Get Fit",
-                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575"
+                            Name = "Get Fit"
                         });
                 });
 
@@ -612,21 +616,21 @@ namespace Matsusanity.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "ed3cabe8-400a-458b-b93f-fd2a1db877b4",
+                            ConcurrencyStamp = "f3d4567a-d3d7-4cee-92cc-bf661b25025b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "5e8d9ce7-5855-4387-ad20-4661f3812f69",
-                            ConcurrencyStamp = "d5097acf-307e-4766-8fff-df8bf4b0e82d",
+                            Id = "4f5c0f1b-58dd-41fb-9f84-77f112f2cd27",
+                            ConcurrencyStamp = "1564caa5-2ce6-4879-8580-2a06f4651642",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "4446da1c-6691-4045-9736-6cd4c5d8cf15",
-                            ConcurrencyStamp = "f7284e01-1af2-4e5b-92ae-79187ab5d8d2",
+                            Id = "85eed61e-e918-4db7-a133-cca15196dc3b",
+                            ConcurrencyStamp = "856f39e9-3a26-4beb-a63c-dd502e1b8312",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -725,13 +729,13 @@ namespace Matsusanity.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "83200414-71f0-489a-858c-2987c08bb605",
+                            ConcurrencyStamp = "59edb93e-d65f-4da0-ab61-962530c0cbdb",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ2aXds3INtVU+BgPsO/JvY6QX2QHPfHxwPdWH3RvVAo5alme/Lqxo/X3z3EreXU+Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDTfya7QQid+bRI3s0SnMOTOJsw8eBrYxDiha8kGOa/yP/IdrNw6snPyIZDRS1VDfQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -856,13 +860,6 @@ namespace Matsusanity.Migrations
                     b.HasOne("Matsusanity.Models.WorkoutPlan", "WorkoutPlan")
                         .WithMany()
                         .HasForeignKey("WorkoutPlanId");
-                });
-
-            modelBuilder.Entity("Matsusanity.Models.WorkoutPlan", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

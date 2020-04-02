@@ -47,9 +47,9 @@ namespace Matsusanity.Data
 
             builder.Entity<WorkoutPlan>()
                     .HasData(
-                new WorkoutPlan { Id = 1, UserId = USER_ID, Name = "Gain Muscle", Description = "This plan is designed for you to gain muscle" },
-                new WorkoutPlan { Id = 2, UserId = USER_ID, Name = "Lose Weight", Description = "This plan is designed for you to lose weight" },
-                new WorkoutPlan { Id = 3, UserId = USER_ID, Name = "Get Fit", Description = "This plan is designed for you to get fit" });
+                new WorkoutPlan { Id = 1, Name = "Gain Muscle", Description = "This plan is designed for you to gain muscle" },
+                new WorkoutPlan { Id = 2, Name = "Lose Weight", Description = "This plan is designed for you to lose weight" },
+                new WorkoutPlan { Id = 3, Name = "Get Fit", Description = "This plan is designed for you to get fit" });
 
             builder.Entity<Workout>()
                     .HasData(
@@ -65,15 +65,15 @@ namespace Matsusanity.Data
 
             builder.Entity<CalendarPlanWorkout>()
                     .HasData(
-                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 1, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 2, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 3, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 4, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 5, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 6, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 7, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 8, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true },
-                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 9, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true });
+                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 1, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true, Url = "https://localhost:44366/clients/Workout/1" },
+                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 2, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true, Url = "https://localhost:44366/clients/Workout/2" },
+                new CalendarPlanWorkout { WorkoutPlanId = 1, WorkoutId = 3, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true, Url = "https://localhost:44366/clients/Workout/3" },
+                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 4, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true, Url = "https://localhost:44366/clients/Workout/4" },
+                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 5, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true, Url = "https://localhost:44366/clients/Workout/5" },
+                new CalendarPlanWorkout { WorkoutPlanId = 2, WorkoutId = 6, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true, Url = "https://localhost:44366/clients/Workout/6" },
+                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 7, Title = "Body", Description = "no weights, just body", Start = DateTime.Parse("2020-03-26"), AllDay = true, Url = "https://localhost:44366/clients/Workout/7" },
+                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 8, Title = "Upper", Description = "Lower Body with equipment", Start = DateTime.Parse("2020-03-27"), AllDay = true, Url = "https://localhost:44366/clients/Workout/8" },
+                new CalendarPlanWorkout { WorkoutPlanId = 3, WorkoutId = 9, Title = "Lower", Description = "Upper body with equipment", Start = DateTime.Parse("2020-03-28"), AllDay = true, Url = "https://localhost:44366/clients/Workout/9" });
 
             builder.Entity<PersonalTrainersClients>()
                     .HasKey(c => new { c.PersonalTrainerId, c.ClientId });

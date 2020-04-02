@@ -35,7 +35,7 @@ namespace Matsusanity.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-       
+
         // GET: Administrators/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -78,7 +78,7 @@ namespace Matsusanity.Controllers
         public async Task<IActionResult> CreatePersonalTrainerView(CreatePersonalTrainerViewModel model, IdentityUser identityUser)
         {
             if (ModelState.IsValid)
-            {  
+            {
                 Guid guid = Guid.NewGuid();
                 var hasher = new PasswordHasher<IdentityUser>();
                 var role = _context.Roles.Where(r => r.Name == "Personal Trainer").FirstOrDefault();
@@ -91,6 +91,7 @@ namespace Matsusanity.Controllers
                     NormalizedEmail = model.IdentityUser.Email.ToUpper(),
                     NormalizedUserName = model.IdentityUser.Email.ToUpper(),
                     PasswordHash = hasher.HashPassword(null, model.IdentityUser.PasswordHash)
+
                 };
 
                 PersonalTrainer personalTrainer = new PersonalTrainer
@@ -112,7 +113,7 @@ namespace Matsusanity.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "PersonalTrainers");
             };
-       
+
             ViewData["UserId"] = new SelectList(_context.PersonalTrainers, "Id", "Id", model.PersonalTrainer.UserId);
             return View();
         }
@@ -228,5 +229,37 @@ namespace Matsusanity.Controllers
         {
             return _context.Administrators.Any(e => e.Id == id);
         }
+        public IActionResult CreateWorkoutPlan()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateWorkoutPlan(WorkoutPlan model)
+        {
+            if (ModelState.IsValid)
+            {
+                WorkoutPlan workout = new WorkoutPlan()
+                {
+                    Name = model.Name,
+                    Description = model.Description
+                };
+
+                _context.Add(workout);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Home", "Administrators");
+            }
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", model.Id);
+            return View();
+        }
+        public async Task<IActionResult> EditActivePlans()
+        {
+            var applicationDbContext = _context.WorkoutPlans;
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+    
     }
 }
+

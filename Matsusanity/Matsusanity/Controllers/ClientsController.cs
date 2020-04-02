@@ -295,5 +295,21 @@ namespace Matsusanity.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> Workout(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var workout = await _context.Workouts.Where(c => c.Id == id).FirstOrDefaultAsync(m => m.Id == id);
+            if (workout == null)
+            {
+                return NotFound();
+            }
+
+            return View(workout);
+        }
     }
 }

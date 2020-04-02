@@ -26,6 +26,7 @@ namespace Matsusanity.Models
         [Display(Name = "All Day Event?")]
         public bool AllDay { get; set; }
 
+        public string Url { get; set; }
 
     }
 }

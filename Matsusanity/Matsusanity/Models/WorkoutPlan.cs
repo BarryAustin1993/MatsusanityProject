@@ -13,10 +13,6 @@ namespace Matsusanity.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("IdentityUser")]
-        public string UserId { get; set; }
-        public IdentityUser IdentityUser { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }

@@ -53,6 +53,7 @@ namespace Matsusanity
 
             options.ClientId = "19017915047 - i93c6u3pff0j2e37fqg6ke5eq1tss050.apps.googleusercontent.com";
             options.ClientSecret = "nz_EyYFQ2u3W7_MTaD7yOb5W";
+            options.SignInScheme = IdentityConstants.ExternalScheme;
         });
 
             services.AddControllersWithViews();
