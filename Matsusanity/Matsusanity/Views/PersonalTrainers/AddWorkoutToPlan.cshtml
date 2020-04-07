@@ -1,0 +1,127 @@
+﻿@model Matsusanity.Models.Workout
+
+@{
+    ViewData["Title"] = "AddWorkoutToPlan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add Workout To Plan</h1>
+
+<h4>Workout</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddWorkoutToPlan">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ExerciseOne" class="control-label"></label>
+                <input asp-for="ExerciseOne" class="form-control" />
+                <span asp-validation-for="ExerciseOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepsOne" class="control-label"></label>
+                <input asp-for="RepsOne" class="form-control" />
+                <span asp-validation-for="RepsOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SetsOne" class="control-label"></label>
+                <input asp-for="SetsOne" class="form-control" />
+                <span asp-validation-for="SetsOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightOne" class="control-label"></label>
+                <input asp-for="WeightOne" class="form-control" />
+                <span asp-validation-for="WeightOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseTwo" class="control-label"></label>
+                <input asp-for="ExerciseTwo" class="form-control" />
+                <span asp-validation-for="ExerciseTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepsTwo" class="control-label"></label>
+                <input asp-for="RepsTwo" class="form-control" />
+                <span asp-validation-for="RepsTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SetsTwo" class="control-label"></label>
+                <input asp-for="SetsTwo" class="form-control" />
+                <span asp-validation-for="SetsTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightTwo" class="control-label"></label>
+                <input asp-for="WeightTwo" class="form-control" />
+                <span asp-validation-for="WeightTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseThree" class="control-label"></label>
+                <input asp-for="ExerciseThree" class="form-control" />
+                <span asp-validation-for="ExerciseThree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepsThree" class="control-label"></label>
+                <input asp-for="RepsThree" class="form-control" />
+                <span asp-validation-for="RepsThree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SetsThree" class="control-label"></label>
+                <input asp-for="SetsThree" class="form-control" />
+                <span asp-validation-for="SetsThree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightThree" class="control-label"></label>
+                <input asp-for="WeightThree" class="form-control" />
+                <span asp-validation-for="WeightThree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseFour" class="control-label"></label>
+                <input asp-for="ExerciseFour" class="form-control" />
+                <span asp-validation-for="ExerciseFour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepsFour" class="control-label"></label>
+                <input asp-for="RepsFour" class="form-control" />
+                <span asp-validation-for="RepsFour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SetsFour" class="control-label"></label>
+                <input asp-for="SetsFour" class="form-control" />
+                <span asp-validation-for="SetsFour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightFour" class="control-label"></label>
+                <input asp-for="WeightFour" class="form-control" />
+                <span asp-validation-for="WeightFour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseFive" class="control-label"></label>
+                <input asp-for="ExerciseFive" class="form-control" />
+                <span asp-validation-for="ExerciseFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepsFive" class="control-label"></label>
+                <input asp-for="RepsFive" class="form-control" />
+                <span asp-validation-for="RepsFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SetsFive" class="control-label"></label>
+                <input asp-for="SetsFive" class="form-control" />
+                <span asp-validation-for="SetsFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightFive" class="control-label"></label>
+                <input asp-for="WeightFive" class="form-control" />
+                <span asp-validation-for="WeightFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

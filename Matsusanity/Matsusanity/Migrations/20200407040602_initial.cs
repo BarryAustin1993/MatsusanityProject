@@ -312,15 +312,15 @@ namespace Matsusanity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "f3d4567a-d3d7-4cee-92cc-bf661b25025b", "Administrator", "ADMINISTRATOR" },
-                    { "4f5c0f1b-58dd-41fb-9f84-77f112f2cd27", "1564caa5-2ce6-4879-8580-2a06f4651642", "Personal Trainer", "PERSONAL TRAINER" },
-                    { "85eed61e-e918-4db7-a133-cca15196dc3b", "856f39e9-3a26-4beb-a63c-dd502e1b8312", "Client", "CLIENT" }
+                    { "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d", "1bfdcd9a-0251-49b9-93ae-75669c843dfa", "Administrator", "ADMINISTRATOR" },
+                    { "28981b65-4178-418c-9dd7-36958415b865", "1e0dac25-8b2e-4c69-a366-16e141607e9c", "Personal Trainer", "PERSONAL TRAINER" },
+                    { "5d65d6da-ff01-4460-82da-44a6834e2d23", "0c0b6811-559b-4b8c-bb57-18c0692d49f4", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "59edb93e-d65f-4da0-ab61-962530c0cbdb", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEDTfya7QQid+bRI3s0SnMOTOJsw8eBrYxDiha8kGOa/yP/IdrNw6snPyIZDRS1VDfQ==", null, false, "", false, "Matsusanity@gmail.com" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "687c6696-1e76-46b3-a30a-5022d1a1986c", "Matsusanity@gmail.com", true, false, null, "MATSUSANITY@GMAIL.COM", "MATSUSANITY@GMAIL.COM", "AQAAAAEAACcQAAAAEFN/ibPb/mdL8R3s6UHroTngDv4PeB4kfiAPuZXEZONyXmEdaZ21k4aiyH6wuJoClw==", null, false, "", false, "Matsusanity@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "CalendarPlanWorkouts",

@@ -111,7 +111,7 @@ namespace Matsusanity.Controllers
                 _context.Add(identityUser);
                 _context.Add(personalTrainer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "PersonalTrainers");
+                return View("Home");
             };
 
             ViewData["UserId"] = new SelectList(_context.PersonalTrainers, "Id", "Id", model.PersonalTrainer.UserId);

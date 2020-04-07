@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Matsusanity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200401205324_initial")]
+    [Migration("20200407040602_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -618,21 +618,21 @@ namespace Matsusanity.Migrations
                         new
                         {
                             Id = "556b2822 - c6bf - 4d9b - a2f6 - 24353a19479d",
-                            ConcurrencyStamp = "f3d4567a-d3d7-4cee-92cc-bf661b25025b",
+                            ConcurrencyStamp = "1bfdcd9a-0251-49b9-93ae-75669c843dfa",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "4f5c0f1b-58dd-41fb-9f84-77f112f2cd27",
-                            ConcurrencyStamp = "1564caa5-2ce6-4879-8580-2a06f4651642",
+                            Id = "28981b65-4178-418c-9dd7-36958415b865",
+                            ConcurrencyStamp = "1e0dac25-8b2e-4c69-a366-16e141607e9c",
                             Name = "Personal Trainer",
                             NormalizedName = "PERSONAL TRAINER"
                         },
                         new
                         {
-                            Id = "85eed61e-e918-4db7-a133-cca15196dc3b",
-                            ConcurrencyStamp = "856f39e9-3a26-4beb-a63c-dd502e1b8312",
+                            Id = "5d65d6da-ff01-4460-82da-44a6834e2d23",
+                            ConcurrencyStamp = "0c0b6811-559b-4b8c-bb57-18c0692d49f4",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -731,13 +731,13 @@ namespace Matsusanity.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "59edb93e-d65f-4da0-ab61-962530c0cbdb",
+                            ConcurrencyStamp = "687c6696-1e76-46b3-a30a-5022d1a1986c",
                             Email = "Matsusanity@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATSUSANITY@GMAIL.COM",
                             NormalizedUserName = "MATSUSANITY@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDTfya7QQid+bRI3s0SnMOTOJsw8eBrYxDiha8kGOa/yP/IdrNw6snPyIZDRS1VDfQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFN/ibPb/mdL8R3s6UHroTngDv4PeB4kfiAPuZXEZONyXmEdaZ21k4aiyH6wuJoClw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

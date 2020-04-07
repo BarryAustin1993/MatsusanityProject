@@ -147,5 +147,46 @@ namespace Matsusanity.Controllers
 
             return View(clients);
         }
+
+        // GET: WorkoutPlans
+        public async Task<IActionResult> ShowWorkoutPlans()
+        {
+            return View(await _context.WorkoutPlans.ToListAsync());
+        }
+
+        // GET: Workout/Create
+        public async Task<IActionResult> AddWorkoutToPlan(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var workoutPlan = await _context.WorkoutPlans.FindAsync(id);
+            if (workoutPlan == null)
+            {
+                return NotFound();
+            }
+            return View();
+        }
+
+
+        // POST: Workout/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddWorkoutToPlan (int id, Workout workout)
+        {
+            if (ModelState.IsValid)
+            {
+                Workout dbWorkout = new Workout();
+                dbWorkout = workout;
+                dbWorkout.WorkoutPlanId = id;
+                _context.Workouts.Add(dbWorkout);
+                
+                await _context.SaveChangesAsync();
+                return RedirectToAction("ShowWorkoutPlans");
+            }
+            return RedirectToAction("ShowWorkoutPlans");
+        }
+
     }
 }
