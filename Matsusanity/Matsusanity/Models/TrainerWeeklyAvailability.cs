@@ -14,8 +14,8 @@ namespace Matsusanity.Models
         public int Id { get; set; }
 
         [ForeignKey("PersonalTrainer")]
-        public string PersonalTrainerId { get; set; }
-        public PersonalTrainer personalTrainer { get; set; }
+        public int PersonalTrainerId { get; set; }
+        public PersonalTrainer PersonalTrainer { get; set; }
 
         public DateTime MondayStartTime { get; set; }
         public DateTime MondayEndTime { get; set; }

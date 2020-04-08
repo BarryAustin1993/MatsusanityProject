@@ -311,5 +311,40 @@ namespace Matsusanity.Controllers
 
             return View(workout);
         }
+
+        public IActionResult RequestInPersonSession()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RequestInPersonSession(int id, InSessionRequest model )
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var client = _context.Clients.Where(c => c.UserId == userId).FirstOrDefault();
+            var clientId = client.Id;
+
+            if (ModelState.IsValid)
+            {
+                InSessionRequest inSessionRequest = new InSessionRequest()
+                {
+                    PersonalTrainerId = id,
+                    ClientId = clientId,
+                    Approved = null,
+                    Start = model.Start,
+                    End = model.End,
+                    Title = client.FirstName + " " + client.LastName + " In Person Session",
+                    Description = model.Start + " - " + model.End,
+                    AllDay = false,
+                    Url = null
+                };
+                _context.Add(inSessionRequest);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return View();
+        }
     }
 }

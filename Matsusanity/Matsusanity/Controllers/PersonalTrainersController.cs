@@ -223,7 +223,7 @@ namespace Matsusanity.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SetInPersonHours(string id, TrainerWeeklyAvailability model )
+        public async Task<IActionResult> SetInPersonHours(int id, TrainerWeeklyAvailability model )
         {
             if (ModelState.IsValid)
             {
@@ -250,6 +250,35 @@ namespace Matsusanity.Controllers
                 return RedirectToAction("Index", "PersonalTrainers");
             }
             return View();
+        }
+
+        public IActionResult SessionRequests()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var trainer = _context.PersonalTrainers.Where(c => c.UserId == userId).FirstOrDefault();
+            var sessions = _context.InSessionRequest.Where(s => s.PersonalTrainerId == trainer.Id);
+
+            return View(sessions);
+        }
+
+        public IActionResult ApproveRequest(int? id)
+        {
+            var session = _context.InSessionRequest.Where(s => s.Id == id).FirstOrDefault();
+            session.Approved = true;
+            _context.SaveChanges();
+
+
+            return RedirectToAction("SessionRequests");
+        }
+
+        public IActionResult DenyRequest(int? id)
+        {
+            var session = _context.InSessionRequest.Where(s => s.Id == id).FirstOrDefault();
+            session.Approved = false;
+            _context.SaveChanges();
+
+
+            return RedirectToAction("SessionRequests");
         }
     }
 }

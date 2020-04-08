@@ -96,5 +96,7 @@ namespace Matsusanity.Data
         public DbSet<Matsusanity.Models.Workout> Workouts { get; set; }
         
         public DbSet<Matsusanity.Models.TrainerWeeklyAvailability> TrainerWeeklyAvailability { get; set; }
+        
+        public DbSet<Matsusanity.Models.InSessionRequest> InSessionRequest { get; set; }
     }
 }
