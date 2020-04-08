@@ -30,7 +30,8 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                <a asp-action="AddTrainer" asp-route-id="@item.Id">Choose Me</a>
+                <a asp-action="AddTrainer" asp-route-id="@item.Id">Choose Me</a> |
+                <a asp-action="RequestInPersonSession" asp-route-id="@item.Id">Request In Person Session</a>
             </td>
         </tr>
 }

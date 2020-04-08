@@ -1,4 +1,4 @@
-﻿@model Matsusanity.Models.Workout
+﻿@model Matsusanity.ViewModels.Workout_Calendar_ViewModel
 
 @{
     ViewData["Title"] = "AddWorkoutToPlan";
@@ -15,104 +15,120 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ExerciseOne" class="control-label"></label>
-                <input asp-for="ExerciseOne" class="form-control" />
-                <span asp-validation-for="ExerciseOne" class="text-danger"></span>
+                <label asp-for="CalendarPlanWorkout.Title" class="control-label"></label>
+                <input asp-for="CalendarPlanWorkout.Title" class="form-control" />
+                <span asp-validation-for="CalendarPlanWorkout.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepsOne" class="control-label"></label>
-                <input asp-for="RepsOne" class="form-control" />
-                <span asp-validation-for="RepsOne" class="text-danger"></span>
+                <label asp-for="CalendarPlanWorkout.Description" class="control-label"></label>
+                <input asp-for="CalendarPlanWorkout.Description" class="form-control" />
+                <span asp-validation-for="CalendarPlanWorkout.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SetsOne" class="control-label"></label>
-                <input asp-for="SetsOne" class="form-control" />
-                <span asp-validation-for="SetsOne" class="text-danger"></span>
+                <label asp-for="CalendarPlanWorkout.Start" class="control-label"></label>
+                <input asp-for="CalendarPlanWorkout.Start" class="form-control" />
+                <span asp-validation-for="CalendarPlanWorkout.Start" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Workout.ExerciseOne" class="control-label"></label>
+                <input asp-for="Workout.ExerciseOne" class="form-control" />
+                <span asp-validation-for="Workout.ExerciseOne" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightOne" class="control-label"></label>
-                <input asp-for="WeightOne" class="form-control" />
-                <span asp-validation-for="WeightOne" class="text-danger"></span>
+                <label asp-for="Workout.RepsOne" class="control-label"></label>
+                <input asp-for="Workout.RepsOne" class="form-control" />
+                <span asp-validation-for="Workout.RepsOne" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExerciseTwo" class="control-label"></label>
-                <input asp-for="ExerciseTwo" class="form-control" />
-                <span asp-validation-for="ExerciseTwo" class="text-danger"></span>
+                <label asp-for="Workout.SetsOne" class="control-label"></label>
+                <input asp-for="Workout.SetsOne" class="form-control" />
+                <span asp-validation-for="Workout.SetsOne" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepsTwo" class="control-label"></label>
-                <input asp-for="RepsTwo" class="form-control" />
-                <span asp-validation-for="RepsTwo" class="text-danger"></span>
+                <label asp-for="Workout.WeightOne" class="control-label"></label>
+                <input asp-for="Workout.WeightOne" class="form-control" />
+                <span asp-validation-for="Workout.WeightOne" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SetsTwo" class="control-label"></label>
-                <input asp-for="SetsTwo" class="form-control" />
-                <span asp-validation-for="SetsTwo" class="text-danger"></span>
+                <label asp-for="Workout.ExerciseTwo" class="control-label"></label>
+                <input asp-for="Workout.ExerciseTwo" class="form-control" />
+                <span asp-validation-for="Workout.ExerciseTwo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightTwo" class="control-label"></label>
-                <input asp-for="WeightTwo" class="form-control" />
-                <span asp-validation-for="WeightTwo" class="text-danger"></span>
+                <label asp-for="Workout.RepsTwo" class="control-label"></label>
+                <input asp-for="Workout.RepsTwo" class="form-control" />
+                <span asp-validation-for="Workout.RepsTwo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExerciseThree" class="control-label"></label>
-                <input asp-for="ExerciseThree" class="form-control" />
-                <span asp-validation-for="ExerciseThree" class="text-danger"></span>
+                <label asp-for="Workout.SetsTwo" class="control-label"></label>
+                <input asp-for="Workout.SetsTwo" class="form-control" />
+                <span asp-validation-for="Workout.SetsTwo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepsThree" class="control-label"></label>
-                <input asp-for="RepsThree" class="form-control" />
-                <span asp-validation-for="RepsThree" class="text-danger"></span>
+                <label asp-for="Workout.WeightTwo" class="control-label"></label>
+                <input asp-for="Workout.WeightTwo" class="form-control" />
+                <span asp-validation-for="Workout.WeightTwo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SetsThree" class="control-label"></label>
-                <input asp-for="SetsThree" class="form-control" />
-                <span asp-validation-for="SetsThree" class="text-danger"></span>
+                <label asp-for="Workout.ExerciseThree" class="control-label"></label>
+                <input asp-for="Workout.ExerciseThree" class="form-control" />
+                <span asp-validation-for="Workout.ExerciseThree" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightThree" class="control-label"></label>
-                <input asp-for="WeightThree" class="form-control" />
-                <span asp-validation-for="WeightThree" class="text-danger"></span>
+                <label asp-for="Workout.RepsThree" class="control-label"></label>
+                <input asp-for="Workout.RepsThree" class="form-control" />
+                <span asp-validation-for="Workout.RepsThree" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExerciseFour" class="control-label"></label>
-                <input asp-for="ExerciseFour" class="form-control" />
-                <span asp-validation-for="ExerciseFour" class="text-danger"></span>
+                <label asp-for="Workout.SetsThree" class="control-label"></label>
+                <input asp-for="Workout.SetsThree" class="form-control" />
+                <span asp-validation-for="Workout.SetsThree" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepsFour" class="control-label"></label>
-                <input asp-for="RepsFour" class="form-control" />
-                <span asp-validation-for="RepsFour" class="text-danger"></span>
+                <label asp-for="Workout.WeightThree" class="control-label"></label>
+                <input asp-for="Workout.WeightThree" class="form-control" />
+                <span asp-validation-for="Workout.WeightThree" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SetsFour" class="control-label"></label>
-                <input asp-for="SetsFour" class="form-control" />
-                <span asp-validation-for="SetsFour" class="text-danger"></span>
+                <label asp-for="Workout.ExerciseFour" class="control-label"></label>
+                <input asp-for="Workout.ExerciseFour" class="form-control" />
+                <span asp-validation-for="Workout.ExerciseFour" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightFour" class="control-label"></label>
-                <input asp-for="WeightFour" class="form-control" />
-                <span asp-validation-for="WeightFour" class="text-danger"></span>
+                <label asp-for="Workout.RepsFour" class="control-label"></label>
+                <input asp-for="Workout.RepsFour" class="form-control" />
+                <span asp-validation-for="Workout.RepsFour" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExerciseFive" class="control-label"></label>
-                <input asp-for="ExerciseFive" class="form-control" />
-                <span asp-validation-for="ExerciseFive" class="text-danger"></span>
+                <label asp-for="Workout.SetsFour" class="control-label"></label>
+                <input asp-for="Workout.SetsFour" class="form-control" />
+                <span asp-validation-for="Workout.SetsFour" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepsFive" class="control-label"></label>
-                <input asp-for="RepsFive" class="form-control" />
-                <span asp-validation-for="RepsFive" class="text-danger"></span>
+                <label asp-for="Workout.WeightFour" class="control-label"></label>
+                <input asp-for="Workout.WeightFour" class="form-control" />
+                <span asp-validation-for="Workout.WeightFour" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SetsFive" class="control-label"></label>
-                <input asp-for="SetsFive" class="form-control" />
-                <span asp-validation-for="SetsFive" class="text-danger"></span>
+                <label asp-for="Workout.ExerciseFive" class="control-label"></label>
+                <input asp-for="Workout.ExerciseFive" class="form-control" />
+                <span asp-validation-for="Workout.ExerciseFive" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="WeightFive" class="control-label"></label>
-                <input asp-for="WeightFive" class="form-control" />
-                <span asp-validation-for="WeightFive" class="text-danger"></span>
+                <label asp-for="Workout.RepsFive" class="control-label"></label>
+                <input asp-for="Workout.RepsFive" class="form-control" />
+                <span asp-validation-for="Workout.RepsFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Workout.SetsFive" class="control-label"></label>
+                <input asp-for="Workout.SetsFive" class="form-control" />
+                <span asp-validation-for="Workout.SetsFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Workout.WeightFive" class="control-label"></label>
+                <input asp-for="Workout.WeightFive" class="form-control" />
+                <span asp-validation-for="Workout.WeightFive" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

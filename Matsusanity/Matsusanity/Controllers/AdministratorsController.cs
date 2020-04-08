@@ -69,7 +69,7 @@ namespace Matsusanity.Controllers
                 PersonalTrainer = new PersonalTrainer(),
                 IdentityUserRole = new IdentityUserRole<string>()
             };
-            ViewData["IdentityUser"] = new SelectList(_context.Users, "ID", "ID");
+            
             return View();
         }
 
@@ -231,7 +231,6 @@ namespace Matsusanity.Controllers
         }
         public IActionResult CreateWorkoutPlan()
         {
-
             return View();
         }
         [HttpPost]

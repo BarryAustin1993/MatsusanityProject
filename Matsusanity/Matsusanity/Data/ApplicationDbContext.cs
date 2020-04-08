@@ -87,12 +87,14 @@ namespace Matsusanity.Data
 
         public DbSet<Matsusanity.Models.PersonalTrainer> PersonalTrainers { get; set; }
 
-        public DbSet<Matsusanity.Models.Workout> Workouts { get; set; }
-
         public DbSet<Matsusanity.Models.CalendarPlanWorkout> CalendarPlanWorkouts { get; set; }
 
         public DbSet<Matsusanity.Models.WorkoutPlan> WorkoutPlans { get; set; }
 
         public DbSet<Matsusanity.Models.PersonalTrainersClients> PersonalTrainersClients { get; set; }
+        
+        public DbSet<Matsusanity.Models.Workout> Workouts { get; set; }
+        
+        public DbSet<Matsusanity.Models.TrainerWeeklyAvailability> TrainerWeeklyAvailability { get; set; }
     }
 }

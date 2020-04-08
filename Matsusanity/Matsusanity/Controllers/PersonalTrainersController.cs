@@ -9,6 +9,7 @@ using Matsusanity.Data;
 using Matsusanity.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Matsusanity.ViewModels;
 
 namespace Matsusanity.Controllers
 {
@@ -155,38 +156,100 @@ namespace Matsusanity.Controllers
         }
 
         // GET: Workout/Create
-        public async Task<IActionResult> AddWorkoutToPlan(int? id)
+        public IActionResult AddWorkoutToPlan()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var workoutPlan = await _context.WorkoutPlans.FindAsync(id);
-            if (workoutPlan == null)
-            {
-                return NotFound();
-            }
             return View();
         }
-
-
         // POST: Workout/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddWorkoutToPlan (int id, Workout workout)
+        public async Task<IActionResult> AddWorkoutToPlan (int id, Workout_Calendar_ViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Workout dbWorkout = new Workout();
-                dbWorkout = workout;
-                dbWorkout.WorkoutPlanId = id;
-                _context.Workouts.Add(dbWorkout);
-                
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ShowWorkoutPlans");
-            }
-            return RedirectToAction("ShowWorkoutPlans");
-        }
+                Workout workout = new Workout()
+                {
+                    WorkoutPlanId = id,
+                    ExerciseOne = model.Workout.ExerciseOne,
+                    RepsOne = model.Workout.RepsOne,
+                    SetsOne = model.Workout.SetsOne,
+                    WeightOne = model.Workout.WeightOne,
+                    ExerciseTwo = model.Workout.ExerciseTwo,
+                    RepsTwo = model.Workout.RepsTwo,
+                    SetsTwo = model.Workout.SetsTwo,
+                    WeightTwo = model.Workout.WeightTwo,
+                    ExerciseThree = model.Workout.ExerciseThree,
+                    RepsThree = model.Workout.RepsThree,
+                    SetsThree = model.Workout.SetsThree,
+                    WeightThree = model.Workout.WeightThree,
+                    ExerciseFour = model.Workout.ExerciseFour,
+                    RepsFour = model.Workout.RepsFour,
+                    SetsFour = model.Workout.SetsFour,
+                    WeightFour = model.Workout.WeightFour,
+                    ExerciseFive = model.Workout.ExerciseFive,
+                    RepsFive = model.Workout.RepsFive,
+                    SetsFive = model.Workout.SetsFive,
+                    WeightFive = model.Workout.WeightFive
 
+                };
+                _context.Add(workout);
+                await _context.SaveChangesAsync();
+
+                var dbWorkout = _context.Workouts.ToList().LastOrDefault();
+                int dbWorkoutId = dbWorkout.Id;
+
+                CalendarPlanWorkout calendarPlanWorkout = new CalendarPlanWorkout()
+                {
+                    Title = model.CalendarPlanWorkout.Title,
+                    Description = model.CalendarPlanWorkout.Description,
+                    Url = "https://localhost:44366/clients/Workout/" + dbWorkoutId,
+                    WorkoutId = workout.Id,
+                    WorkoutPlanId = id,
+                    Start = model.CalendarPlanWorkout.Start,
+                    End = null,
+                    AllDay = true
+                };
+                _context.Add(calendarPlanWorkout);
+                await _context.SaveChangesAsync();
+
+
+                return RedirectToAction("Index", "PersonalTrainers");
+            }
+            return View();
+        }
+        public IActionResult SetInPersonHours()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SetInPersonHours(string id, TrainerWeeklyAvailability model )
+        {
+            if (ModelState.IsValid)
+            {
+                TrainerWeeklyAvailability weeklyAvailability = new TrainerWeeklyAvailability()
+                {
+                    PersonalTrainerId = id,
+                    MondayStartTime = model.MondayStartTime,
+                    MondayEndTime = model.MondayEndTime,
+                    TuesdayStartTime = model.TuesdayStartTime,
+                    TuesdayEndTime = model.TuesdayEndTime,
+                    WednesdayStartTime = model.WednesdayStartTime,
+                    WednesdayEndTime = model.WednesdayEndTime,
+                    ThursdayStartTime = model.ThursdayStartTime,
+                    ThursdayEndTime = model.ThursdayEndTime,
+                    FridayStartTime = model.FridayStartTime,
+                    FridayEndTime = model.FridayEndTime,
+                    SaturdayStartTime = model.SaturdayStartTime,
+                    SaturdayEndTime = model.SaturdayEndTime,
+                    SundayStartTime = model.SundayStartTime,
+                    SundayEndTime = model.SundayEndTime
+                };
+                _context.Add(weeklyAvailability);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "PersonalTrainers");
+            }
+            return View();
+        }
     }
 }
