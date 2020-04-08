@@ -280,5 +280,14 @@ namespace Matsusanity.Controllers
 
             return RedirectToAction("SessionRequests");
         }
+
+        public JsonResult GetEvents()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var trainer = _context.PersonalTrainers.Where(c => c.UserId == userId).FirstOrDefault();
+            var sessions = _context.InSessionRequest.Where(s => s.PersonalTrainerId == trainer.Id).ToList();
+            var events = sessions.Where(s => s.Approved == true);
+            return new JsonResult(events);
+        }
     }
 }
